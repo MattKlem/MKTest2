@@ -1,0 +1,131 @@
+<xsl:stylesheet xmlns:aml="http://schemas.microsoft.com/aml/2001/core"
+                xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+                xmlns:fo="http://www.w3.org/1999/XSL/Format"
+                xmlns:o="urn:schemas-microsoft-com:office:office"
+                xmlns:sl="http://schemas.microsoft.com/schemaLibrary/2003/core"
+                xmlns:st1="urn:schemas-microsoft-com:office:smarttags"
+                xmlns:v="urn:schemas-microsoft-com:vml"
+                xmlns:w="http://schemas.microsoft.com/office/word/2003/wordml"
+                xmlns:w10="urn:schemas-microsoft-com:office:word"
+                xmlns:wsp="http://schemas.microsoft.com/office/word/2003/wordml/sp2"
+                xmlns:wx="http://schemas.microsoft.com/office/word/2003/auxHint"
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+				xmlns:file="http://expath.org/ns/file"
+                xmlns:tlr="http://www.elite.com/functions" version="2.0">
+
+
+	<xsl:template name="SectPr1" xml:space="default">
+		
+		<xsl:param name="TemplatePath"/>
+		
+		<xsl:variable name="imgPath" select="concat($WFPATH,'\DLS_Logo.jpg')"/>
+		
+		
+				<xsl:variable name="theData" select="file:read-binary($imgPath)"/>
+				<xsl:variable name="ImageID" select="'IMG-LOGO.JPG'"/>
+		<w:sectPr>
+			
+
+			<!-- Header for all "odd" or subsequent pages within this section -->
+			<w:hdr w:type="odd">
+
+				<w:p>
+				<w:r>
+					<w:pict>
+						<w:binData w:name="wordml://{$ImageID}.png" xml:space="preserve"><xsl:value-of select="$theData" /></w:binData>
+						<v:shape id="{$ImageID}" type="#_x0000_t75" style="visibility:visible;width:134;height:50;"
+						  alt="Datolite Solutions">
+							<v:imagedata src="wordml://{$ImageID}.png" o:title="datolite-solutions-image"/>
+						</v:shape>
+					</w:pict><w:br/>
+				</w:r>
+			</w:p>
+			<w:p>
+				<w:r>
+					<w:pict>
+						<v:rect id="Rectangle 10" o:spid="_x0000_s1026" style="position:absolute;margin-left:0;margin-top:0;width:717.25pt;height:4.85pt;z-index:1;visibility:visible;mso-wrap-style:square;mso-width-percent:0;mso-height-percent:0;mso-wrap-distance-left:9pt;mso-wrap-distance-top:0;mso-wrap-distance-right:9pt;mso-wrap-distance-bottom:0;mso-position-horizontal:absolute;mso-position-horizontal-relative:margin;mso-position-vertical:absolute;mso-position-vertical-relative:text;mso-width-percent:0;mso-height-percent:0;mso-width-relative:margin;mso-height-relative:margin;v-text-anchor:middle" o:gfxdata="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&#xA;BgAAAAAEAAQA8wAAALgFAAAAAA==&#xA;" fillcolor="#0070c0" stroked="f" strokeweight="1pt">
+							<w10:wrap anchorx="margin"/>
+						</v:rect>
+					</w:pict>
+				</w:r>
+			</w:p>
+			</w:hdr>
+			<w:ftr w:type="odd">
+				<!-- 2Col Table inserted from Solution Manager -->
+<w:tbl>
+	<xsl:variable name="Col1" select="12000"/>
+	<xsl:variable name="Col2" select="2400"/>
+	<w:tblPr>
+		<w:tblW w:w="0" w:type="dxa"/>
+		<w:tblLayout w:type="Fixed"/>
+		<w:tblCellMar>
+			<w:left w:w="0" w:type="dxa"/>
+			<w:right w:w="0" w:type="dxa"/>
+		</w:tblCellMar>
+	</w:tblPr>
+	<w:tblGrid>
+		<w:gridCol w:w="{$Col1}"/>
+		<w:gridCol w:w="{$Col2}"/>
+	</w:tblGrid>
+	<w:tr>
+		<w:trPr>
+			<w:cantSplit/>
+			<w:tblHeader/>
+		</w:trPr>
+		<!--ColumnNumber 1-->
+		<w:tc>
+			<w:tcPr>
+				<w:tcW w:w="{$Col1}" w:type="dxa"/>
+				<w:vAlign w:val="top"/>
+			</w:tcPr>
+			<w:p>
+					<w:r>
+						<w:rPr>
+							<w:sz w:val="16"/>
+						</w:rPr>
+						<w:t>Datolite Template Report for <xsl:value-of select="tokenize(replace($TemplatePath,'_xaml','.xaml'),'\\')[position() = last()]"/>; Generated at <xsl:value-of select="format-dateTime(current-dateTime(), '[h1]:[m01] [P] on [MNn] [D], [Y0001] ([z]).')"/></w:t><w:br/>
+						<w:t>(C) 2024 Datolite Solutions</w:t>
+					</w:r>
+				</w:p>
+		</w:tc>
+		<!--ColumnNumber 2-->
+		<w:tc>
+				<xsl:variable name="imgPath" select="concat($WFPATH,'\DLS_Circle.jpg')"/>
+		
+		
+				<xsl:variable name="theData" select="file:read-binary($imgPath)"/>
+				<xsl:variable name="ImageID" select="'IMG-CIRCLE.JPG'"/>
+			<w:tcPr>
+				<w:tcW w:w="{$Col2}" w:type="dxa"/>
+				<w:vAlign w:val="bottom"/>
+			</w:tcPr>
+			<w:p>
+				<w:pPr>
+					<w:jc w:val="right"/>
+				</w:pPr>
+				<w:r>
+					<w:pict>
+						<w:binData w:name="wordml://{$ImageID}.png" xml:space="preserve"><xsl:value-of select="$theData" /></w:binData>
+						<v:shape id="{$ImageID}" type="#_x0000_t75" style="visibility:visible;width:57;height:58;"
+						  alt="Datolite Solutions">
+							<v:imagedata src="wordml://{$ImageID}.png" o:title="datolite-solutions-image"/>
+						</v:shape>
+					</w:pict>
+				</w:r>
+			</w:p>
+		</w:tc>
+	</w:tr>
+</w:tbl>
+
+				
+			</w:ftr>
+
+		
+			<!-- Margin and page size controls for 8.5 x 11 Letter, 1" margins-->
+			<w:pgSz w:w="15840" w:h="12240" w:orient="landscape"/>
+			<w:pgMar w:top="720" w:right="720" w:bottom="720" w:left="720" w:header="100"
+                    w:footer="180" w:gutter="0"/>
+		</w:sectPr>
+
+	</xsl:template>
+</xsl:stylesheet>

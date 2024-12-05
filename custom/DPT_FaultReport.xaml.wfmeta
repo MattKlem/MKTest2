@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SmWorkflowMetadata xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <IsDisabled>false</IsDisabled>
+  <IsCustomizationShouldBeUsed>false</IsCustomizationShouldBeUsed>
+  <EDG3EPublish>false</EDG3EPublish>
+  <Categories />
+  <Matches />
+</SmWorkflowMetadata>

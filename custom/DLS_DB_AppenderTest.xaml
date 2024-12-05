@@ -1,0 +1,448 @@
+﻿<Activity mc:Ignorable="sads sap sap2010" x:Class="SolutionManagerEmptyTemplate"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:ea="clr-namespace:EDG.Activities;assembly=EDG.Activities"
+ xmlns:eaa="clr-namespace:EDG.Activities.ApplyStylesheet;assembly=EDG.Activities.ApplyStylesheet"
+ xmlns:eafp="clr-namespace:Elite.Activities.Framework.PropertyBag;assembly=Elite.Activities.Framework"
+ xmlns:eag="clr-namespace:EDG.Activities.GetPropertyBagUrl;assembly=EDG.Activities.GetPropertyBagUrl"
+ xmlns:eal="clr-namespace:EDG.Activities.LoadDocument;assembly=EDG.Activities.LoadDocument"
+ xmlns:eal1="clr-namespace:EDG.Activities.Log;assembly=EDG.Activities.Log"
+ xmlns:eas="clr-namespace:EDG.Activities.SaveToDisk;assembly=EDG.Activities.SaveToDisk"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:s="clr-namespace:System;assembly=mscorlib"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:sco1="clr-namespace:System.Collections.ObjectModel;assembly=System"
+ xmlns:sd="clr-namespace:System.Diagnostics;assembly=System"
+ xmlns:st="clr-namespace:System.Text;assembly=mscorlib"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="ELITEWorkflowDirectory" Type="InOutArgument(x:String)" />
+    <x:Property Name="ELITEWorkflowCode" Type="InArgument(x:String)" />
+    <x:Property Name="RuntimeEngineURL" Type="InArgument(x:String)" />
+    <x:Property Name="SourceDocument" Type="InArgument(ea:Document)" />
+    <x:Property Name="OutputDocuments" Type="OutArgument(scg:List(ea:Document))" />
+    <x:Property Name="Errors" Type="OutArgument(scg:List(x:String))" />
+  </x:Members>
+  <sap2010:WorkflowViewState.IdRef>SolutionManagerEmptyTemplate_1</sap2010:WorkflowViewState.IdRef>
+  <mva:VisualBasic.Settings>Assembly references and imported namespaces serialized as XML namespaces</mva:VisualBasic.Settings>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>EDG.Activities.InitializeWorkflow</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System.ServiceModel</x:String>
+      <x:String>System.ServiceModel.Activities</x:String>
+      <x:String>System.ServiceModel.Channels</x:String>
+      <x:String>System.ServiceModel.Description</x:String>
+      <x:String>System.ServiceModel.Security</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Activities.Debugger.Symbol</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>EDG.Activities</x:String>
+      <x:String>EDG.Activities.LoadDocument</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>EDG.Activities.GetPropertyBagUrl</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>EDG.Activities.InitializeWorkflow</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Web</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activation</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>EDG.Activities</AssemblyReference>
+      <AssemblyReference>EDG.Activities.LoadDocument</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+      <AssemblyReference>EDG.Activities.GetPropertyBagUrl</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Root Sequence (OnPrem)" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence DisplayName="Main Sequence" sap2010:WorkflowViewState.IdRef="Sequence_2">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="eal:LoadDocumentResult" Name="theDoc" />
+        <Variable x:TypeArguments="eag:GetPropertyBagUrlResult" Name="pbURL" />
+        <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="PropertyBag" />
+      </Sequence.Variables>
+      <eag:GetPropertyBagUrl sap2010:WorkflowViewState.IdRef="GetPropertyBagUrl_1" Result="[pbURL]" RootFolderPath="[ELITEWorkflowDirectory]" />
+      <eafp:GetBagFromStore Attributes="{x:Null}" AutoDeObfuscate="{x:Null}" CorrelationId="{x:Null}" sap2010:WorkflowViewState.IdRef="GetBagFromStore_1" Name="TE_PM_3E_Settings" Result="[PropertyBag]" ServiceUri="[pbURL.Url]" />
+      <eal:LoadDocument DisplayName="Load XML" FilePath="[System.IO.Path.Combine(ELITEWorkflowDirectory, ELITEWorkflowCode &amp; &quot;_xaml&quot;, &quot;Test Files&quot;, &quot;AppenderTestSrc.xml&quot;)]" sap2010:WorkflowViewState.IdRef="LoadDocument_2" Result="[theDoc]">
+        <eal:LoadDocument.DefaultEncoding>
+          <InArgument x:TypeArguments="st:Encoding" />
+        </eal:LoadDocument.DefaultEncoding>
+      </eal:LoadDocument>
+      <Sequence DisplayName="Check Processes" sap2010:WorkflowViewState.IdRef="Sequence_6">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="x:Int32" Name="dlsAppCount" />
+          <Variable x:TypeArguments="x:Int32" Name="dlsSeqCount" />
+          <Variable x:TypeArguments="x:Int32" Name="dlsDiagCount" />
+          <Variable x:TypeArguments="sd:Process[]" Default="[System.Diagnostics.Process.GetProcesses]" Name="allProcs" />
+          <Variable x:TypeArguments="x:String" Name="logMsg" />
+          <Variable x:TypeArguments="eaa:ApplyStylesheetResult" Name="logResult" />
+        </Sequence.Variables>
+        <ForEach x:TypeArguments="sd:Process" DisplayName="ForEach&lt;Process&gt;" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[allprocs]">
+          <ActivityAction x:TypeArguments="sd:Process">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="sd:Process" Name="proc" />
+            </ActivityAction.Argument>
+            <Sequence sap2010:WorkflowViewState.IdRef="Sequence_4">
+              <Switch x:TypeArguments="x:String" Expression="[proc.ProcessName]" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+                <Assign x:Key="Datolite.Diagnostics.Services.Logging" sap2010:WorkflowViewState.IdRef="Assign_1">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Int32">[dlsDiagCount]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Int32">1</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign x:Key="Datolite.Appending.DBSvc" sap2010:WorkflowViewState.IdRef="Assign_2">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Int32">[dlsAppCount]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Int32">1</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign x:Key="Seq" sap2010:WorkflowViewState.IdRef="Assign_3">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Int32">[dlsSeqCount]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Int32">1</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </Switch>
+            </Sequence>
+          </ActivityAction>
+        </ForEach>
+        <Sequence DisplayName="Generate Services Log" sap2010:WorkflowViewState.IdRef="Sequence_5">
+          <If Condition="[dlsAppCount &gt; 0]" DisplayName="Appender Status" sap2010:WorkflowViewState.IdRef="If_1">
+            <If.Else>
+              <Assign sap2010:WorkflowViewState.IdRef="Assign_4">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[logMsg]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String" xml:space="preserve">The Datolite DB Appender Service is not running. </InArgument>
+                </Assign.Value>
+              </Assign>
+            </If.Else>
+          </If>
+          <If Condition="[dlsSeqCount &gt; 0]" DisplayName="Seq Status" sap2010:WorkflowViewState.IdRef="If_2">
+            <If.Else>
+              <Assign sap2010:WorkflowViewState.IdRef="Assign_5">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[logMsg]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String">[logMsg &amp; "The Seq Service is not running. "]</InArgument>
+                </Assign.Value>
+              </Assign>
+            </If.Else>
+          </If>
+          <If Condition="[dlsDiagCount &gt; 0]" DisplayName="Diagnostics Status" sap2010:WorkflowViewState.IdRef="If_3">
+            <If.Else>
+              <Assign sap2010:WorkflowViewState.IdRef="Assign_6">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:String">[logMsg]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:String" xml:space="preserve">[logMsg &amp; "The Datolite Diagnostics  Logging Service is not running. "]</InArgument>
+                </Assign.Value>
+              </Assign>
+            </If.Else>
+          </If>
+        </Sequence>
+        <eaa:ApplyStylesheet DisplayName="Log Message" Document="[theDoc.Document]" sap2010:WorkflowViewState.IdRef="ApplyStylesheet_2" Result="[logResult]" StylesheetPath="[System.IO.Path.Combine(ELITEWorkflowDirectory, ELITEWorkflowCode &amp; &quot;_xaml&quot;, &quot;DocumentMaster.dmast&quot;)]" TemplateName="DocMaster">
+          <eaa:ApplyStylesheet.Parameters>
+            <eaa:StyleSheetParameter Name="type" Value="[&quot;'&quot; &amp; &quot;l&quot; &amp; &quot;'&quot;]" />
+            <eaa:StyleSheetParameter Name="log" Value="[&quot;'&quot; &amp; logMsg &amp; &quot;'&quot;]" />
+          </eaa:ApplyStylesheet.Parameters>
+        </eaa:ApplyStylesheet>
+        <eas:SaveToDisk Document="[logResult.Document]" sap2010:WorkflowViewState.IdRef="SaveToDisk_1" Overwrite="True" SavePath="C:\TEMP\AppTest\AppenderTest.log" SkipFirst="True">
+          <eas:SaveToDisk.VersionMask>
+            <InArgument x:TypeArguments="x:String">
+              <Literal x:TypeArguments="x:String" Value="" />
+            </InArgument>
+          </eas:SaveToDisk.VersionMask>
+        </eas:SaveToDisk>
+      </Sequence>
+      <DoWhile sap2010:WorkflowViewState.IdRef="DoWhile_1">
+        <DoWhile.Variables>
+          <Variable x:TypeArguments="x:Int32" Default="1" Name="counter" />
+          <Variable x:TypeArguments="eal:LoadDocumentResult" Name="thePDF" />
+          <Variable x:TypeArguments="eal:LoadDocumentResult" Name="theDocX" />
+        </DoWhile.Variables>
+        <DoWhile.Condition>[counter &lt; 4]</DoWhile.Condition>
+        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_7">
+          <eal:LoadDocument DisplayName="Load PDF" FilePath="[System.IO.Path.Combine(ELITEWorkflowDirectory, ELITEWorkflowCode &amp; &quot;_xaml&quot;, &quot;Test Files&quot;, counter.ToString + &quot;.pdf&quot;)]" sap2010:WorkflowViewState.IdRef="LoadDocument_3" Result="[thePDF]">
+            <eal:LoadDocument.DefaultEncoding>
+              <InArgument x:TypeArguments="st:Encoding" />
+            </eal:LoadDocument.DefaultEncoding>
+          </eal:LoadDocument>
+          <eal:LoadDocument DisplayName="Load DOCX" FilePath="[System.IO.Path.Combine(ELITEWorkflowDirectory, ELITEWorkflowCode &amp; &quot;_xaml&quot;, &quot;Test Files&quot;, counter.ToString + &quot;.docx&quot;)]" sap2010:WorkflowViewState.IdRef="LoadDocument_4" Result="[theDOCX]">
+            <eal:LoadDocument.DefaultEncoding>
+              <InArgument x:TypeArguments="st:Encoding" />
+            </eal:LoadDocument.DefaultEncoding>
+          </eal:LoadDocument>
+          <eas:SaveToDisk DisplayName="Persist PDF" Document="[thePDF.Document]" sap2010:WorkflowViewState.IdRef="SaveToDisk_2" Overwrite="True" SavePath="[&quot;C:\TEMP\AppTest\PDF\&quot; &amp; counter.ToString &amp; &quot;.pdf&quot;]" SkipFirst="True">
+            <eas:SaveToDisk.VersionMask>
+              <InArgument x:TypeArguments="x:String">
+                <Literal x:TypeArguments="x:String" Value="" />
+              </InArgument>
+            </eas:SaveToDisk.VersionMask>
+          </eas:SaveToDisk>
+          <eas:SaveToDisk DisplayName="Persist DOCX" Document="[theDOCX.Document]" sap2010:WorkflowViewState.IdRef="SaveToDisk_3" Overwrite="True" SavePath="[&quot;C:\TEMP\AppTest\DOCX\&quot; &amp; counter.ToString &amp; &quot;.docx&quot;]" SkipFirst="True">
+            <eas:SaveToDisk.VersionMask>
+              <InArgument x:TypeArguments="x:String">
+                <Literal x:TypeArguments="x:String" Value="" />
+              </InArgument>
+            </eas:SaveToDisk.VersionMask>
+          </eas:SaveToDisk>
+          <TryCatch sap2010:WorkflowViewState.IdRef="TryCatch_1">
+            <TryCatch.Try>
+              <eaa:ApplyStylesheet DisplayName="Execute Appender" Document="[theDoc.Document]" sap2010:WorkflowViewState.IdRef="ApplyStylesheet_3" StylesheetPath="[System.IO.Path.Combine(ELITEWorkflowDirectory, ELITEWorkflowCode &amp; &quot;_xaml&quot;, &quot;DocumentMaster.dmast&quot;)]" TemplateName="DocMaster">
+                <eaa:ApplyStylesheet.Parameters>
+                  <eaa:StyleSheetParameter Name="type" Value="[&quot;'&quot; &amp; 1 &amp; &quot;'&quot;]" />
+                  <eaa:StyleSheetParameter Name="ConnString" Value="[&quot;'&quot; &amp; PropertyBag(&quot;ProcessManager_ConnectionString&quot;) &amp; &quot;'&quot;]" />
+                </eaa:ApplyStylesheet.Parameters>
+              </eaa:ApplyStylesheet>
+            </TryCatch.Try>
+            <TryCatch.Catches>
+              <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                <ActivityAction x:TypeArguments="s:Exception">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                  </ActivityAction.Argument>
+                  <eal1:Log sap2010:WorkflowViewState.IdRef="Log_1" LogType="Error" Message="[&quot;****DATOLITE APPENDER FAILURE**** &quot; &amp; exception.Message]" />
+                </ActivityAction>
+              </Catch>
+            </TryCatch.Catches>
+          </TryCatch>
+          <Assign sap2010:WorkflowViewState.IdRef="Assign_7">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:Int32">[counter]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:Int32">[counter + 1]</InArgument>
+            </Assign.Value>
+          </Assign>
+        </Sequence>
+      </DoWhile>
+    </Sequence>
+    <sads:DebugSymbol.Symbol>d3FDOlxVc2Vyc1xDdHItS2xlbU1cQXBwRGF0YVxSb2FtaW5nXEM0RDEzMUE5LTZCRTEtNDI3MS05ODg5LTYzMjNEMUNERTgxNVxmNDljNzI0Zi1lN2FlLTRjNGEtYTFmZS1jZTFkZWEyNjBjZTEuWEFNTFdUA4ICDgIBAVUFgAIQAgECWwdbkQEDAYMBXAdc5gECAX1dB2EaAgF3YgfBARICATfCAQf/ARECAQNbdFuOAQMBhgFbW1tkAwGEAVy7AVzKAQMBgQFc1gFc4wECAX9coAFcswECAX5diAJdkgICAXtdOV3PAQIBeGc8Z2cCAThrCY0BEwIBZI4BCbMBFAIBTLQBCbkBHwIBProBCcABGgIBOcQBN8QBOgIBBMgBHMgBLAIBNckBCf4BFAIBBWuJAWuVAQIBdXANiwEYAgFljwELmgEQAgFdmwELpgEQAgFVpwELsgEQAgFNtAGtAbQBrAICAUm0AboCtAHFAgIBSLQBQbQBVAIBRrYBK7YBMQIBRbQBkAG0AZ0BAgFDtwErtwEwAgFCtgE4tgFxAgFBtwE3twFpAgE/ugEiugE4AgE8vQEPvQE+AgE7ugGCAboBpAECATrKAQvOAR4CAS7PAQvTAR4CASfUAQvaARwCASHbAQvhARwCARviAQv1ARYCAQv2AQv9ARQCAQZxD4oBGAIBZo8BGY8BLwIBXpEBD5gBGAIBYJsBGZsBLwIBVp0BD6QBGAIBWKcBGacBMAIBTqkBD7ABGAIBUMoBkALKAZoCAgEzygE9ygHXAQIBL88BkgLPAZ0CAgEszwE+zwHZAQIBKNQBPtQBUQIBJdcBEdcBQAIBJNQBmwHUAe0BAgEi2wE/2wFTAgEf3gER3gFAAgEe2wGdAdsB8QECARzkAQ/pASUCAQ/xARPxAaoBAgEM+wE1+wFCAgEJ+AE2+AE/AgEHcT1xUQIBZ3IReRoCAXF6EYEBGgIBbYIBEYkBGgIBaZMBO5MBQwIBYaIBOqIBawIBW58BO58BQwIBWasBO6sBQwIBUeQBowHkAaICAgEY5AGwAuQBuwICARfkAUzkAV8CARXmATHmATcCARTnATHnAT0CARPmAT7mAWsCARLnAUTnAagBAgEQ8QFd8QGnAQIBDXc7dzwCAXR0PHRKAgFyfzt/PAIBcHw8fEkCAW6HATuHATwCAWyEATyEAUkCAWo=</sads:DebugSymbol.Symbol>
+  </Sequence>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="GetPropertyBagUrl_1" sap:VirtualizedContainerService.HintSize="566,150">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="GetBagFromStore_1" sap:VirtualizedContainerService.HintSize="566,274">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="LoadDocument_2" sap:VirtualizedContainerService.HintSize="566,150">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_3" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Switch`1_1" sap:VirtualizedContainerService.HintSize="476,182" />
+      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="498,306">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEach`1_1" sap:VirtualizedContainerService.HintSize="528,454">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_4" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="464,208">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_5" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="464,208">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_6" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="If_3" sap:VirtualizedContainerService.HintSize="464,208">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="528,828">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ApplyStylesheet_2" sap:VirtualizedContainerService.HintSize="528,283">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="SaveToDisk_1" sap:VirtualizedContainerService.HintSize="528,167">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_6" sap:VirtualizedContainerService.HintSize="566,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="LoadDocument_3" sap:VirtualizedContainerService.HintSize="518,150">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="LoadDocument_4" sap:VirtualizedContainerService.HintSize="518,150">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="SaveToDisk_2" sap:VirtualizedContainerService.HintSize="518,167">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="SaveToDisk_3" sap:VirtualizedContainerService.HintSize="518,167">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ApplyStylesheet_3" sap:VirtualizedContainerService.HintSize="500,283">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Log_1" sap:VirtualizedContainerService.HintSize="424,156">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Catch`1_1" sap:VirtualizedContainerService.HintSize="504,21">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="TryCatch_1" sap:VirtualizedContainerService.HintSize="518,510" />
+      <sap2010:ViewStateData Id="Assign_7" sap:VirtualizedContainerService.HintSize="518,60" />
+      <sap2010:ViewStateData Id="Sequence_7" sap:VirtualizedContainerService.HintSize="540,1528">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="DoWhile_1" sap:VirtualizedContainerService.HintSize="566,1690">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="588,2599">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="610,2723">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="SolutionManagerEmptyTemplate_1" sap:VirtualizedContainerService.HintSize="650,2803" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</Activity>

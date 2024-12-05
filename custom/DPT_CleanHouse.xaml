@@ -1,0 +1,800 @@
+﻿<Activity mc:Ignorable="sads sap sap2010" x:Class="SolutionManagerEmptyTemplate" this:SolutionManagerEmptyTemplate.CleanHousePBName="DatolitePowertoys"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:ea="clr-namespace:EDG.Activities;assembly=EDG.Activities"
+ xmlns:eae="clr-namespace:EDG.Activities.ExecuteSql;assembly=EDG.Activities.ExecuteSql"
+ xmlns:eae1="clr-namespace:EDG.Activities.Email;assembly=EDG.Activities.Email"
+ xmlns:eafp="clr-namespace:Elite.Activities.Framework.PropertyBag;assembly=Elite.Activities.Framework"
+ xmlns:eag="clr-namespace:EDG.Activities.GetPropertyBagUrl;assembly=EDG.Activities.GetPropertyBagUrl"
+ xmlns:eal="clr-namespace:EDG.Activities.Log;assembly=EDG.Activities.Log"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:s="clr-namespace:System;assembly=mscorlib"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:sco1="clr-namespace:System.Collections.ObjectModel;assembly=System"
+ xmlns:sder="clr-namespace:System.Diagnostics.Eventing.Reader;assembly=System.Core"
+ xmlns:si="clr-namespace:System.IO;assembly=mscorlib"
+ xmlns:this="clr-namespace:"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="ELITEWorkflowDirectory" Type="InOutArgument(x:String)" />
+    <x:Property Name="ELITEWorkflowCode" Type="InArgument(x:String)" />
+    <x:Property Name="RuntimeEngineURL" Type="InArgument(x:String)" />
+    <x:Property Name="SourceDocument" Type="InArgument(ea:Document)" />
+    <x:Property Name="OutputDocuments" Type="OutArgument(scg:List(ea:Document))" />
+    <x:Property Name="Errors" Type="OutArgument(scg:List(x:String))" />
+    <x:Property Name="CleanHousePBName" Type="InArgument(x:String)" />
+  </x:Members>
+  <sap2010:WorkflowViewState.IdRef>SolutionManagerEmptyTemplate_1</sap2010:WorkflowViewState.IdRef>
+  <mva:VisualBasic.Settings>Assembly references and imported namespaces serialized as XML namespaces</mva:VisualBasic.Settings>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System.ServiceModel</x:String>
+      <x:String>System.ServiceModel.Activities</x:String>
+      <x:String>System.ServiceModel.Channels</x:String>
+      <x:String>System.ServiceModel.Description</x:String>
+      <x:String>System.ServiceModel.Security</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Activities.Debugger.Symbol</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>EDG.Activities</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Diagnostics.Eventing.Reader</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Web</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activation</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>EDG.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Root Sequence (OnPrem)" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence DisplayName="Main Sequence" sap2010:WorkflowViewState.IdRef="Sequence_2">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="chBag" />
+        <Variable x:TypeArguments="eag:GetPropertyBagUrlResult" Name="pBagURL" />
+      </Sequence.Variables>
+      <Sequence DisplayName="Property Bag Sequence" sap2010:WorkflowViewState.IdRef="Sequence_4">
+        <eag:GetPropertyBagUrl sap2010:WorkflowViewState.IdRef="GetPropertyBagUrl_1" Result="[pBagURL]" RootFolderPath="[ELITEWorkflowDirectory]" />
+        <eafp:GetBagFromStore Attributes="{x:Null}" AutoDeObfuscate="{x:Null}" CorrelationId="{x:Null}" DisplayName="GetConfigurations" sap2010:WorkflowViewState.IdRef="GetBagFromStore_1" Name="[CleanHousePBName]" Result="[chBag]" ServiceUri="[pBagURL.url]" />
+      </Sequence>
+      <Persist sap2010:WorkflowViewState.IdRef="Persist_1" />
+      <Flowchart sap2010:WorkflowViewState.IdRef="Flowchart_1">
+        <Flowchart.StartNode>
+          <FlowStep x:Name="__ReferenceID0" sap2010:WorkflowViewState.IdRef="FlowStep_3">
+            <Sequence DisplayName="Full Cleanup" sap2010:WorkflowViewState.IdRef="Sequence_6">
+              <Sequence.Variables>
+                <Variable x:TypeArguments="x:String" Name="DBConnString" />
+                <Variable x:TypeArguments="x:Int32" Name="RetainCount" />
+                <Variable x:TypeArguments="x:String" Name="KeepSysProcs" />
+                <Variable x:TypeArguments="x:String" Name="CleanMode" />
+                <Variable x:TypeArguments="x:Int32" Name="LoopDelay" />
+                <Variable x:TypeArguments="x:String" Name="spString" />
+                <Variable x:TypeArguments="x:String" Name="CleanFilesystem" />
+                <Variable x:TypeArguments="x:String" Name="CleanEventViewer" />
+              </Sequence.Variables>
+              <Sequence DisplayName="Cleanhouse Vars" sap2010:WorkflowViewState.IdRef="Sequence_5">
+                <Assign sap2010:WorkflowViewState.IdRef="Assign_1">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Int32">[RetainCount]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Int32">[Int32.Parse(chBag("RetainCount"))]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign sap2010:WorkflowViewState.IdRef="Assign_2">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[CleanMode]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[chBag("CleanMode")]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <If Condition="[chBag(&quot;KeepSysProcs&quot;) = &quot;true&quot;]" DisplayName="KeepSysProcs" sap2010:WorkflowViewState.IdRef="If_1">
+                  <If.Then>
+                    <Assign sap2010:WorkflowViewState.IdRef="Assign_3">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[KeepSysProcs]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">Y</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                  </If.Then>
+                  <If.Else>
+                    <Assign sap2010:WorkflowViewState.IdRef="Assign_7">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[KeepSysProcs]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">N</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                  </If.Else>
+                </If>
+                <Assign sap2010:WorkflowViewState.IdRef="Assign_4">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:Int32">[LoopDelay]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:Int32">[Int32.Parse(chBag("CleanDelay"))]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign sap2010:WorkflowViewState.IdRef="Assign_8">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[CleanFilesystem]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[chBag("CleanFilesystem")]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign sap2010:WorkflowViewState.IdRef="Assign_9">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[CleanEventViewer]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[chBag("CleanEventViewer")]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign sap2010:WorkflowViewState.IdRef="Assign_5">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[DBConnString]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[chBag("DBConnString")]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <Assign sap2010:WorkflowViewState.IdRef="Assign_6">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[spString]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">["exec DLS_CleanHouse @CleanMode = '" &amp; CleanMode &amp; "', @KeepSysProcs = '" &amp; KeepSysProcs &amp; "', @RetainCount = " &amp; RetainCount]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <eal:Log sap2010:WorkflowViewState.IdRef="Log_1" LogType="Information" Message="[&quot;Executing Clean House stored procedure as follows: &quot; &amp; spString &amp; &quot; using the DBConnString: &quot; &amp; DBConnString]" />
+              </Sequence>
+              <eae:ExecuteSql ConnectionString="[DBConnString]" DisplayName="Clean Tables" sap2010:WorkflowViewState.IdRef="ExecuteSql_1" Query="[spString]" />
+              <If Condition="[CleanFilesystem = &quot;true&quot;]" DisplayName="Clean Filesystem" sap2010:WorkflowViewState.IdRef="If_2">
+                <If.Then>
+                  <Sequence DisplayName="Clean Filesystem" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                    <eal:Log sap2010:WorkflowViewState.IdRef="Log_2" LogType="Information" Message="Cleaning the filesystem" />
+                    <ForEach x:TypeArguments="x:String" DisplayName="Loop through folders and delete them" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[System.IO.Directory.GetDirectories(&quot;C:\ProgramData\TR\WF&quot;)]">
+                      <ActivityAction x:TypeArguments="x:String">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="x:String" Name="folder" />
+                        </ActivityAction.Argument>
+                        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_9">
+                          <InvokeMethod sap2010:WorkflowViewState.IdRef="InvokeMethod_1" MethodName="Delete" TargetType="si:Directory">
+                            <InArgument x:TypeArguments="x:String">[folder]</InArgument>
+                            <InArgument x:TypeArguments="x:Boolean">True</InArgument>
+                          </InvokeMethod>
+                          <eal:Log sap2010:WorkflowViewState.IdRef="Log_6" LogType="Information" Message="[&quot;Folder Deleted: &quot; &amp; folder]" />
+                        </Sequence>
+                      </ActivityAction>
+                    </ForEach>
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <eal:Log sap2010:WorkflowViewState.IdRef="Log_3" LogType="Information" Message="Cleaning filesystem skipped" />
+                </If.Else>
+              </If>
+              <If Condition="[CleanEventViewer = &quot;true&quot;]" DisplayName="Clean Event Viewer Logs" sap2010:WorkflowViewState.IdRef="If_3">
+                <If.Then>
+                  <Sequence DisplayName="Clean Event Viewer Logs" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="sder:EventLogSession" Name="evtSession" />
+                      <Variable x:TypeArguments="scg:IEnumerable(x:String)" Name="evtLogs" />
+                      <Variable x:TypeArguments="x:String" Name="evtLog" />
+                    </Sequence.Variables>
+                    <eal:Log sap2010:WorkflowViewState.IdRef="Log_4" LogType="Information" Message="Cleaning Event Viewer Logs" />
+                    <Assign sap2010:WorkflowViewState.IdRef="Assign_10">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="sder:EventLogSession">[evtSession]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="sder:EventLogSession">[new EventLogSession()]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <Assign sap2010:WorkflowViewState.IdRef="Assign_11">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="scg:IEnumerable(x:String)">[evtLogs]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="scg:IEnumerable(x:String)">[evtsession.GetLogNames()]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                    <ForEach x:TypeArguments="x:String" DisplayName="ForEach&lt;String&gt;" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[evtLogs]">
+                      <ActivityAction x:TypeArguments="x:String">
+                        <ActivityAction.Argument>
+                          <DelegateInArgument x:TypeArguments="x:String" Name="logName" />
+                        </ActivityAction.Argument>
+                        <If Condition="[logName.Contains(&quot;ThomsonReuters-ProcessManager&quot;)]" sap2010:WorkflowViewState.IdRef="If_4">
+                          <If.Then>
+                            <Sequence sap2010:WorkflowViewState.IdRef="Sequence_10">
+                              <InvokeMethod sap2010:WorkflowViewState.IdRef="InvokeMethod_2" MethodName="ClearLog">
+                                <InvokeMethod.TargetObject>
+                                  <InArgument x:TypeArguments="sder:EventLogSession">[evtSession]</InArgument>
+                                </InvokeMethod.TargetObject>
+                                <InArgument x:TypeArguments="x:String">[logName]</InArgument>
+                              </InvokeMethod>
+                              <eal:Log sap2010:WorkflowViewState.IdRef="Log_7" LogType="Information" Message="[&quot;Event Viewer Log Cleaned: &quot; &amp; logName]" />
+                            </Sequence>
+                          </If.Then>
+                        </If>
+                      </ActivityAction>
+                    </ForEach>
+                  </Sequence>
+                </If.Then>
+                <If.Else>
+                  <eal:Log sap2010:WorkflowViewState.IdRef="Log_5" LogType="Information" Message="Cleaning Event Viewer skipped" />
+                </If.Else>
+              </If>
+              <Sequence DisplayName="Notifications" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="PropertyBag" />
+                  <Variable x:TypeArguments="x:String" Name="options" />
+                </Sequence.Variables>
+                <If Condition="[chBag(&quot;EnableNotify&quot;) = &quot;true&quot;]" sap2010:WorkflowViewState.IdRef="If_9">
+                  <If.Then>
+                    <Sequence sap2010:WorkflowViewState.IdRef="Sequence_13">
+                      <Sequence DisplayName="Property Bag Sequence" sap2010:WorkflowViewState.IdRef="Sequence_11">
+                        <eafp:GetBagFromStore Attributes="{x:Null}" AutoDeObfuscate="{x:Null}" CorrelationId="{x:Null}" DisplayName="GetConfigurations" sap2010:WorkflowViewState.IdRef="GetBagFromStore_2" Name="TE_PM_3E_Settings" Result="[PropertyBag]" ServiceUri="[pBagURL.url]" />
+                      </Sequence>
+                      <Sequence DisplayName="Build Options" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                        <Switch x:TypeArguments="x:String" Expression="[chBag(&quot;CleanMode&quot;)]" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+                          <Switch.Default>
+                            <Assign sap2010:WorkflowViewState.IdRef="Assign_13">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[options]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">[options &amp; "&lt;li&gt;Duplicates Only&lt;/li&gt;"]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </Switch.Default>
+                          <Assign x:Key="A" sap2010:WorkflowViewState.IdRef="Assign_14">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[options]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">[options &amp; "&lt;li&gt;All&lt;/li&gt;"]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <Assign x:Key="D" sap2010:WorkflowViewState.IdRef="Assign_15">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[options]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">[options &amp; "&lt;li&gt;Remove duplicate workflows &amp; Instances&lt;/li&gt;"]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                          <Assign x:Key="I" sap2010:WorkflowViewState.IdRef="Assign_16">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[options]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">[options &amp; "&lt;li&gt;Instances Only&lt;/li&gt;"]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                        </Switch>
+                        <Assign sap2010:WorkflowViewState.IdRef="Assign_25">
+                          <Assign.To>
+                            <OutArgument x:TypeArguments="x:String">[options]</OutArgument>
+                          </Assign.To>
+                          <Assign.Value>
+                            <InArgument x:TypeArguments="x:String">[options &amp; "&lt;li&gt;Retain last " &amp; chBag("RetainCount") &amp; " duplicate workflows and instances&lt;/li&gt;"]</InArgument>
+                          </Assign.Value>
+                        </Assign>
+                        <If Condition="[chBag(&quot;KeepSysProcs&quot;) =&quot;true&quot;]" sap2010:WorkflowViewState.IdRef="If_5">
+                          <If.Then>
+                            <Assign sap2010:WorkflowViewState.IdRef="Assign_17">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[options]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">[options &amp; "&lt;li&gt;Retain System Processes&lt;/li&gt;"]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </If.Then>
+                          <If.Else>
+                            <Assign sap2010:WorkflowViewState.IdRef="Assign_18">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[options]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">[options &amp; "&lt;li&gt;Delete System Processes&lt;/li&gt;"]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </If.Else>
+                        </If>
+                        <If Condition="[chBag(&quot;CleanDelay&quot;) =&quot;0&quot;]" sap2010:WorkflowViewState.IdRef="If_6">
+                          <If.Then>
+                            <Assign sap2010:WorkflowViewState.IdRef="Assign_19">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[options]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">[options &amp; "&lt;li&gt;Onetime Execution&lt;/li&gt;"]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </If.Then>
+                          <If.Else>
+                            <Assign sap2010:WorkflowViewState.IdRef="Assign_20">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[options]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">[options &amp; "&lt;li&gt;Repeats every " &amp; chBag("DayDelay") &amp; " day(s)&lt;/li&gt;"]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </If.Else>
+                        </If>
+                        <If Condition="[chBag(&quot;CleanFilesystem&quot;) =&quot;true&quot;]" sap2010:WorkflowViewState.IdRef="If_7">
+                          <If.Then>
+                            <Assign sap2010:WorkflowViewState.IdRef="Assign_21">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[options]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">[options &amp; "&lt;li&gt;Clean filesystem&lt;/li&gt;"]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </If.Then>
+                          <If.Else>
+                            <Assign sap2010:WorkflowViewState.IdRef="Assign_22">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[options]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">[options &amp; "&lt;li&gt;Don't clean filesystem&lt;/li&gt;"]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </If.Else>
+                        </If>
+                        <If Condition="[chBag(&quot;CleanEventViewer&quot;) =&quot;true&quot;]" sap2010:WorkflowViewState.IdRef="If_8">
+                          <If.Then>
+                            <Assign sap2010:WorkflowViewState.IdRef="Assign_23">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[options]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">[options &amp; "&lt;li&gt;Clean Event Viewer&lt;/li&gt;"]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </If.Then>
+                          <If.Else>
+                            <Assign sap2010:WorkflowViewState.IdRef="Assign_24">
+                              <Assign.To>
+                                <OutArgument x:TypeArguments="x:String">[options]</OutArgument>
+                              </Assign.To>
+                              <Assign.Value>
+                                <InArgument x:TypeArguments="x:String">[options &amp; "&lt;li&gt;Don't clean Event Viewer&lt;/li&gt;"]</InArgument>
+                              </Assign.Value>
+                            </Assign>
+                          </If.Else>
+                        </If>
+                      </Sequence>
+                      <TryCatch DisplayName="Send Email" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+                        <TryCatch.Try>
+                          <eae1:Email Body="[&quot;&lt;p&gt;Your 3ET cleanup script has run with the following options:&lt;/p&gt;&lt;p&gt;&lt;ul&gt;&quot; &amp; options &amp; &quot;&lt;/ul&gt;&lt;/p&gt;&quot;]" EnableSSL="False" ExchangeAuthenticationMode="Integrated" From="3et@datolitesolutions.com" sap2010:WorkflowViewState.IdRef="Email_1" IsHTML="True" MSExchangeVersion="Exchange2010_SP2" Port="[Int32.Parse(PropertyBag(&quot;SMTP_Port&quot;))]" Priority="Normal" Protocol="Smtp" SMTPAuthenticationMode="Anonymous" Sender="3et@datolitesolutions.com" ServerAddress="[PropertyBag(&quot;SMTP_Host&quot;)]" Subject="3ET Cleanhouse Completed">
+                            <eae1:Email.BCC>
+                              <sco1:ObservableCollection x:TypeArguments="InArgument(x:String)" />
+                            </eae1:Email.BCC>
+                            <eae1:Email.CC>
+                              <sco1:ObservableCollection x:TypeArguments="InArgument(x:String)" />
+                            </eae1:Email.CC>
+                            <eae1:Email.EmailAttachments>
+                              <sco1:ObservableCollection x:TypeArguments="eae1:Attachment" />
+                            </eae1:Email.EmailAttachments>
+                            <eae1:Email.Password>
+                              <InArgument x:TypeArguments="x:String" />
+                            </eae1:Email.Password>
+                            <eae1:Email.To>
+                              <InArgument x:TypeArguments="x:String">[chBag("NotifyEmail")]</InArgument>
+                            </eae1:Email.To>
+                            <eae1:Email.Username>
+                              <InArgument x:TypeArguments="x:String" />
+                            </eae1:Email.Username>
+                          </eae1:Email>
+                        </TryCatch.Try>
+                        <TryCatch.Catches>
+                          <Catch x:TypeArguments="s:Exception" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                            <ActivityAction x:TypeArguments="s:Exception">
+                              <ActivityAction.Argument>
+                                <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                              </ActivityAction.Argument>
+                            </ActivityAction>
+                          </Catch>
+                        </TryCatch.Catches>
+                      </TryCatch>
+                    </Sequence>
+                  </If.Then>
+                </If>
+              </Sequence>
+            </Sequence>
+            <FlowStep.Next>
+              <FlowDecision x:Name="__ReferenceID1" Condition="[Int32.Parse(chBag(&quot;CleanDelay&quot;)) &gt; 0]" DisplayName="Repeat" sap2010:WorkflowViewState.IdRef="FlowDecision_1">
+                <FlowDecision.True>
+                  <FlowStep x:Name="__ReferenceID3" sap2010:WorkflowViewState.IdRef="FlowStep_1">
+                    <NoPersistScope DisplayName="Wait X Days" sap2010:WorkflowViewState.IdRef="NoPersistScope_1">
+                      <Delay Duration="[Timespan.FromDays(Int32.Parse(chBag(&quot;CleanDelay&quot;)))]" sap2010:WorkflowViewState.IdRef="Delay_1" />
+                    </NoPersistScope>
+                    <FlowStep.Next>
+                      <x:Reference>__ReferenceID0</x:Reference>
+                    </FlowStep.Next>
+                  </FlowStep>
+                </FlowDecision.True>
+                <FlowDecision.False>
+                  <FlowStep x:Name="__ReferenceID2" sap2010:WorkflowViewState.IdRef="FlowStep_2">
+                    <eal:Log sap2010:WorkflowViewState.IdRef="Log_12" LogType="Information" Message="Cleanup Completed!" />
+                  </FlowStep>
+                </FlowDecision.False>
+              </FlowDecision>
+            </FlowStep.Next>
+          </FlowStep>
+        </Flowchart.StartNode>
+        <x:Reference>__ReferenceID0</x:Reference>
+        <x:Reference>__ReferenceID1</x:Reference>
+        <x:Reference>__ReferenceID2</x:Reference>
+        <x:Reference>__ReferenceID3</x:Reference>
+      </Flowchart>
+    </Sequence>
+    <sads:DebugSymbol.Symbol>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</sads:DebugSymbol.Symbol>
+  </Sequence>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="GetPropertyBagUrl_1" sap:VirtualizedContainerService.HintSize="277,150">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="GetBagFromStore_1" sap:VirtualizedContainerService.HintSize="277,274">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="719,588">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Persist_1" sap:VirtualizedContainerService.HintSize="719,22" />
+      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="509,60" />
+      <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="509,60" />
+      <sap2010:ViewStateData Id="Assign_3" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_7" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="509,208">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_4" sap:VirtualizedContainerService.HintSize="509,60" />
+      <sap2010:ViewStateData Id="Assign_8" sap:VirtualizedContainerService.HintSize="509,60" />
+      <sap2010:ViewStateData Id="Assign_9" sap:VirtualizedContainerService.HintSize="509,60" />
+      <sap2010:ViewStateData Id="Assign_5" sap:VirtualizedContainerService.HintSize="509,60" />
+      <sap2010:ViewStateData Id="Assign_6" sap:VirtualizedContainerService.HintSize="509,60" />
+      <sap2010:ViewStateData Id="Log_1" sap:VirtualizedContainerService.HintSize="509,156">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="700,1228">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ExecuteSql_1" sap:VirtualizedContainerService.HintSize="700,155">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Log_2" sap:VirtualizedContainerService.HintSize="302,156">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="InvokeMethod_1" sap:VirtualizedContainerService.HintSize="250,128" />
+      <sap2010:ViewStateData Id="Log_6" sap:VirtualizedContainerService.HintSize="250,156">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_9" sap:VirtualizedContainerService.HintSize="272,448">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ForEach`1_1" sap:VirtualizedContainerService.HintSize="302,596" />
+      <sap2010:ViewStateData Id="Sequence_7" sap:VirtualizedContainerService.HintSize="324,916">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Log_3" sap:VirtualizedContainerService.HintSize="253,156">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="700,1064">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Log_4" sap:VirtualizedContainerService.HintSize="494,156">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_10" sap:VirtualizedContainerService.HintSize="494,60" />
+      <sap2010:ViewStateData Id="Assign_11" sap:VirtualizedContainerService.HintSize="494,60" />
+      <sap2010:ViewStateData Id="InvokeMethod_2" sap:VirtualizedContainerService.HintSize="313,128" />
+      <sap2010:ViewStateData Id="Log_7" sap:VirtualizedContainerService.HintSize="313,156">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_10" sap:VirtualizedContainerService.HintSize="335,448">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_4" sap:VirtualizedContainerService.HintSize="464,596" />
+      <sap2010:ViewStateData Id="ForEach`1_2" sap:VirtualizedContainerService.HintSize="494,744" />
+      <sap2010:ViewStateData Id="Sequence_8" sap:VirtualizedContainerService.HintSize="516,1264">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Log_5" sap:VirtualizedContainerService.HintSize="267,156">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_3" sap:VirtualizedContainerService.HintSize="700,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="GetBagFromStore_2" sap:VirtualizedContainerService.HintSize="277,274">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_11" sap:VirtualizedContainerService.HintSize="531,398">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_13" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_14" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_15" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_16" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Switch`1_1" sap:VirtualizedContainerService.HintSize="509,182" />
+      <sap2010:ViewStateData Id="Assign_25" sap:VirtualizedContainerService.HintSize="509,60" />
+      <sap2010:ViewStateData Id="Assign_17" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_18" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="If_5" sap:VirtualizedContainerService.HintSize="509,208" />
+      <sap2010:ViewStateData Id="Assign_19" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_20" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="If_6" sap:VirtualizedContainerService.HintSize="509,208" />
+      <sap2010:ViewStateData Id="Assign_21" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_22" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="If_7" sap:VirtualizedContainerService.HintSize="509,208" />
+      <sap2010:ViewStateData Id="Assign_23" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="Assign_24" sap:VirtualizedContainerService.HintSize="242,60" />
+      <sap2010:ViewStateData Id="If_8" sap:VirtualizedContainerService.HintSize="509,208" />
+      <sap2010:ViewStateData Id="Sequence_12" sap:VirtualizedContainerService.HintSize="531,1398">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Email_1" sap:VirtualizedContainerService.HintSize="330,239">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Catch`1_1" sap:VirtualizedContainerService.HintSize="404,21">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="TryCatch_1" sap:VirtualizedContainerService.HintSize="531,466" />
+      <sap2010:ViewStateData Id="Sequence_13" sap:VirtualizedContainerService.HintSize="553,2466">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_9" sap:VirtualizedContainerService.HintSize="678,2614" />
+      <sap2010:ViewStateData Id="Sequence_14" sap:VirtualizedContainerService.HintSize="700,2738">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_6" sap:VirtualizedContainerService.HintSize="200,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Delay_1" sap:VirtualizedContainerService.HintSize="200,22" />
+      <sap2010:ViewStateData Id="NoPersistScope_1" sap:VirtualizedContainerService.HintSize="210,61">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_1">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">5,269.5</av:Point>
+            <av:Size x:Key="ShapeSize">210,61</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">110,269.5 110,150 260,150</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Log_12" sap:VirtualizedContainerService.HintSize="250,156">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_2">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">435,412</av:Point>
+            <av:Size x:Key="ShapeSize">250,156</av:Size>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowDecision_1" sap:VirtualizedContainerService.HintSize="70,87">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <av:Point x:Key="ShapeLocation">325,256.5</av:Point>
+            <av:Size x:Key="ShapeSize">70,87</av:Size>
+            <av:PointCollection x:Key="FalseConnector">395,300 560,300 560,412</av:PointCollection>
+            <av:PointCollection x:Key="TrueConnector">325,300 215,300</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="FlowStep_3">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <av:Point x:Key="ShapeLocation">260,124.5</av:Point>
+            <av:Size x:Key="ShapeSize">200,51</av:Size>
+            <av:PointCollection x:Key="ConnectorLocation">360,175.5 360,256.5</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Flowchart_1" sap:VirtualizedContainerService.HintSize="719,636">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+            <av:Point x:Key="ShapeLocation">330,2.5</av:Point>
+            <av:Size x:Key="ShapeSize">60,75</av:Size>
+            <x:Double x:Key="Width">705</x:Double>
+            <av:PointCollection x:Key="ConnectorLocation">360,77.5 360,124.5</av:PointCollection>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="741,1450">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="763,1574">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="SolutionManagerEmptyTemplate_1" sap:VirtualizedContainerService.HintSize="803,1654" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</Activity>

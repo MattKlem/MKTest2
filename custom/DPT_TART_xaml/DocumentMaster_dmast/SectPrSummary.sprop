@@ -1,0 +1,59 @@
+<xsl:stylesheet xmlns:aml="http://schemas.microsoft.com/aml/2001/core"
+                xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882"
+                xmlns:fo="http://www.w3.org/1999/XSL/Format"
+                xmlns:o="urn:schemas-microsoft-com:office:office"
+                xmlns:sl="http://schemas.microsoft.com/schemaLibrary/2003/core"
+                xmlns:st1="urn:schemas-microsoft-com:office:smarttags"
+                xmlns:v="urn:schemas-microsoft-com:vml"
+                xmlns:w="http://schemas.microsoft.com/office/word/2003/wordml"
+                xmlns:w10="urn:schemas-microsoft-com:office:word"
+                xmlns:wsp="http://schemas.microsoft.com/office/word/2003/wordml/sp2"
+                xmlns:wx="http://schemas.microsoft.com/office/word/2003/auxHint"
+                xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+				xmlns:file="http://expath.org/ns/file"
+                xmlns:tlr="http://www.elite.com/functions" version="2.0">
+
+
+	<xsl:template name="SectPrSummary" xml:space="default">
+		
+			<xsl:variable name="imgPath" select="concat($WFPATH,'\DLS_Logo.jpg')"/>
+		
+		
+				<xsl:variable name="theData" select="file:read-binary($imgPath)"/>
+				<xsl:variable name="ImageID" select="'IMG-LOGO.JPG'"/>
+		
+<w:p>
+	<w:pPr>
+		
+		<w:sectPr>
+			
+			<w:hdr w:type="odd">
+				<w:p>
+				<w:pPr>
+					<w:jc w:val="center"/>
+				</w:pPr>
+				<w:r>
+					<w:pict>
+						<w:binData w:name="wordml://{$ImageID}.png" xml:space="preserve"><xsl:value-of select="$theData" /></w:binData>
+						<v:shape id="{$ImageID}" type="#_x0000_t75" style="visibility:visible;width:383;height:142;"
+						  alt="Datolite Solutions">
+							<v:imagedata src="wordml://{$ImageID}.png" o:title="datolite-solutions-image"/>
+						</v:shape>
+					</w:pict>
+				</w:r>
+			</w:p>
+			</w:hdr>
+
+			
+		
+			<!-- Margin and page size controls for 8.5 x 11 Letter, 1" margins-->
+			<w:pgSz w:w="15840" w:h="12240" w:orient="landscape"/>
+			<w:pgMar w:top="720" w:right="720" w:bottom="720" w:left="720" w:header="100"
+                    w:footer="180" w:gutter="0"/>
+		</w:sectPr>
+		
+		</w:pPr>
+</w:p>
+
+	</xsl:template>
+</xsl:stylesheet>

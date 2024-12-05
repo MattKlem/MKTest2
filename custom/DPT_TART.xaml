@@ -1,0 +1,156 @@
+﻿<Activity mc:Ignorable="sads sap sap2010" x:Class="SolutionManagerEmptyTemplate"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:ea="clr-namespace:EDG.Activities;assembly=EDG.Activities"
+ xmlns:eaa="clr-namespace:EDG.Activities.ApplyStylesheet;assembly=EDG.Activities.ApplyStylesheet"
+ xmlns:eac="clr-namespace:EDG.Activities.ConvertDocumentBase;assembly=EDG.Activities.ConvertDocumentBase"
+ xmlns:eac1="clr-namespace:EDG.Activities.ConvertWordDocument;assembly=EDG.Activities.ConvertWordDocument"
+ xmlns:eal="clr-namespace:EDG.Activities.LoadDocument;assembly=EDG.Activities.LoadDocument"
+ xmlns:eas="clr-namespace:EDG.Activities.SaveToDisk;assembly=EDG.Activities.SaveToDisk"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:s="clr-namespace:System;assembly=mscorlib"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:sco1="clr-namespace:System.Collections.ObjectModel;assembly=System"
+ xmlns:st="clr-namespace:System.Text;assembly=mscorlib"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="ELITEWorkflowDirectory" Type="InOutArgument(x:String)" />
+    <x:Property Name="ELITEWorkflowCode" Type="InArgument(x:String)" />
+    <x:Property Name="RuntimeEngineURL" Type="InArgument(x:String)" />
+    <x:Property Name="SourceDocument" Type="InArgument(ea:Document)" />
+    <x:Property Name="OutputDocuments" Type="OutArgument(scg:List(ea:Document))" />
+    <x:Property Name="Errors" Type="OutArgument(scg:List(x:String))" />
+    <x:Property Name="TemplateList" Type="InArgument(x:String)" />
+  </x:Members>
+  <sap2010:WorkflowViewState.IdRef>SolutionManagerEmptyTemplate_1</sap2010:WorkflowViewState.IdRef>
+  <mva:VisualBasic.Settings>Assembly references and imported namespaces serialized as XML namespaces</mva:VisualBasic.Settings>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System.ServiceModel</x:String>
+      <x:String>System.ServiceModel.Activities</x:String>
+      <x:String>System.ServiceModel.Channels</x:String>
+      <x:String>System.ServiceModel.Description</x:String>
+      <x:String>System.ServiceModel.Security</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Activities.Debugger.Symbol</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>EDG.Activities</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>EDG.Activities.ApplyStylesheet</x:String>
+      <x:String>EDG.Activities.ConvertDocumentBase</x:String>
+      <x:String>EDG.Activities.LoadDocument</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Web</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activation</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>EDG.Activities</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+      <AssemblyReference>EDG.Activities.ApplyStylesheet</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>EDG.Activities.ConvertDocumentBase</AssemblyReference>
+      <AssemblyReference>EDG.Activities.LoadDocument</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Root Sequence (OnPrem)" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence DisplayName="Main Sequence" sap2010:WorkflowViewState.IdRef="Sequence_2">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="eaa:ApplyStylesheetResult" Name="dmResult" />
+        <Variable x:TypeArguments="eac:ConvertDocumentResult" Name="PDFResult" />
+        <Variable x:TypeArguments="eal:LoadDocumentResult" Name="stubSrc" />
+        <Variable x:TypeArguments="s:String[]" Name="wsList" />
+      </Sequence.Variables>
+      <eaa:ApplyStylesheet DisplayName="LaunchDM" Document="[SourceDocument]" sap2010:WorkflowViewState.IdRef="ApplyStylesheet_1" Result="[dmResult]" StylesheetPath="[System.IO.Path.Combine(ELITEWorkflowDirectory, ELITEWorkflowCode &amp; &quot;_XAML&quot;, &quot;DocumentMaster.dmast&quot;)]" TemplateName="DocMaster">
+        <eaa:ApplyStylesheet.Parameters>
+          <eaa:StyleSheetParameter Name="WFPATH" Value="[&quot;'&quot; &amp; System.IO.Path.Combine(ELITEWorkflowDirectory, ELITEWorkflowCode &amp; &quot;_XAML&quot;) &amp; &quot;'&quot;]" />
+        </eaa:ApplyStylesheet.Parameters>
+      </eaa:ApplyStylesheet>
+      <eac1:ConvertWordDocument Contact="{x:Null}" DocumentPassword="{x:Null}" ImagePath="{x:Null}" Location="{x:Null}" OwnerPassword="{x:Null}" PfxFile="{x:Null}" PfxPassword="{x:Null}" Reason="{x:Null}" UserPassword="{x:Null}" Algorithm="AESx256" ApplyPDFBookmarks="True" ArePermissionsSet="False" AssembleDocument="True" Document="[dmResult.Document]" EditingRestrictions="0" EncodingCodePage="65001" ExtractContent="True" ExtractContentWithDisabilities="True" FillForm="True" sap2010:WorkflowViewState.IdRef="ConvertWordDocument_1" IncludeBOM="False" IsCertificateSet="False" IsEncryptionSet="False" IsRestrictionsSet="False" IsSignatureVisible="False" ModifyContent="True" ModifyTextAnnotations="True" OfficeVersion="Office2019" PageNumber="0" PositionHeight="0" PositionWidth="0" PositionX="0" PositionY="0" PrintDocument="True" PrintingQuality="True" ProcessSubDocs="True" Result="[PDFResult]" SelectedOutputType="PDF" TrackChanges="False" UpdateWordFields="False" UseSelectedOutputFormat="True">
+        <eac1:ConvertWordDocument.ExpressionOutputFormat>
+          <InArgument x:TypeArguments="ea:DocumentTypes" />
+        </eac1:ConvertWordDocument.ExpressionOutputFormat>
+      </eac1:ConvertWordDocument>
+      <eas:SaveToDisk Document="[PDFResult.Document]" sap2010:WorkflowViewState.IdRef="SaveToDisk_1" Overwrite="True" SavePath="c:\temp\TART_Report.pdf" SkipFirst="True">
+        <eas:SaveToDisk.VersionMask>
+          <InArgument x:TypeArguments="x:String">
+            <Literal x:TypeArguments="x:String" Value="" />
+          </InArgument>
+        </eas:SaveToDisk.VersionMask>
+      </eas:SaveToDisk>
+    </Sequence>
+    <sads:DebugSymbol.Symbol>d3BDOlxVc2Vyc1xNYXR0S2xlbVxBcHBEYXRhXFJvYW1pbmdcQzREMTMxQTktNkJFMS00MjcxLTk4ODktNjMyM0QxQ0RFODE1XDFjM2I1ZmU1LTJkZWQtNGQ3Zi1iZDdhLWIzNDRjNDY3ZGMyNi5YQU1MEFUDcA4CAQFWBW4QAgECXQdhHQIBDWIHZiICAQhnB20YAgEDXaYBXaUCAgEXXbMCXb4CAgEWXTxdTgIBFF8pXzECARNdigFdlgECARFfOF+9AQIBDmLOAmLjAgIBC2L4BmKFBwIBCWcgZzYCAQZqDWo8AgEFZ4ABZ5kBAgEE</sads:DebugSymbol.Symbol>
+  </Sequence>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="ApplyStylesheet_1" sap:VirtualizedContainerService.HintSize="500,157">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ConvertWordDocument_1" sap:VirtualizedContainerService.HintSize="500,282">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="SaveToDisk_1" sap:VirtualizedContainerService.HintSize="500,167">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="522,810">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="544,1464">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="SolutionManagerEmptyTemplate_1" sap:VirtualizedContainerService.HintSize="584,1544" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</Activity>

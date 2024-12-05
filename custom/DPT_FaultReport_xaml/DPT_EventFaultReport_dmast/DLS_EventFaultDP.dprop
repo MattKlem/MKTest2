@@ -1,0 +1,117 @@
+<?xml version="1.0"?>
+<xsl:stylesheet xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" xmlns:html="http://www.w3.org/TR/REC-html40" xmlns:aml="http://schemas.microsoft.com/aml/2001/core" xmlns:dt="uuid:C2F41010-65B3-11d1-A29F-00AA00C14882" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:sl="http://schemas.microsoft.com/schemaLibrary/2003/core" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="http://schemas.microsoft.com/office/word/2003/wordml" xmlns:w10="urn:schemas-microsoft-com:office:word" xmlns:wsp="http://schemas.microsoft.com/office/word/2003/wordml/sp2" xmlns:wx="http://schemas.microsoft.com/office/word/2003/auxHint" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:kmf="http://www.kleinmundo.com/functions" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0">
+	<xsl:template name="DLS_EventFaultDP">
+		<DocumentProperties xmlns="urn:schemas-microsoft-com:office:office">
+			<Author>Datolite Solutions</Author>
+			<LastAuthor>Datolite Solutions</LastAuthor>
+			<o:Created>
+				<xsl:value-of select="current-date()"/>T<xsl:value-of select="current-time()"/>Z</o:Created>
+			<o:LastSaved>
+				<xsl:value-of select="current-date()"/>T<xsl:value-of select="current-time()"/>Z</o:LastSaved>
+			<Version>11.9999</Version>
+		</DocumentProperties>
+		<ExcelWorkbook xmlns="urn:schemas-microsoft-com:office:excel">
+			<WindowHeight>10770</WindowHeight>
+			<WindowWidth>18195</WindowWidth>
+			<WindowTopX>120</WindowTopX>
+			<WindowTopY>105</WindowTopY>
+			<ProtectStructure>False</ProtectStructure>
+			<ProtectWindows>False</ProtectWindows>
+		</ExcelWorkbook>
+		<Styles>
+			<Style ss:ID="Default" ss:Name="Normal">
+				<Alignment ss:Vertical="Bottom"/>
+				<Borders/>
+				<Font/>
+				<Interior/>
+				<NumberFormat/>
+				<Protection/>
+			</Style>
+			<Style ss:ID="s16" ss:Name="Comma">
+				<NumberFormat ss:Format="_-* #,##0.00_-;\-* #,##0.00_-;_-* &quot;-&quot;??_-;_-@_-"/>
+			</Style>
+			<Style ss:ID="s18" ss:Name="Currency">
+				<NumberFormat ss:Format="_-&quot;$&quot;* #,##0.00_-;\-&quot;$&quot;* #,##0.00_-;_-&quot;$&quot;* &quot;-&quot;??_-;_-@_-"/>
+			</Style>
+			<Style ss:ID="s18a" ss:Name="Currency">
+				<NumberFormat ss:Format="_-&quot;$&quot;* #,##0.00_-;\-&quot;$&quot;* #,##0.00_-;_-&quot;$&quot;* &quot;-&quot;??_-;_-@_-"/>
+				<Font ss:FontName="Arial" x:Family="Swiss" ss:Color="#000000" ss:Bold="1"/>
+				<Borders>
+					<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="3"/>
+				</Borders>
+			</Style>
+			<Style ss:ID="sWrap">
+				<Alignment ss:Vertical="Bottom" ss:WrapText="1"/>
+			</Style>
+			<Style ss:ID="s74" ss:Parent="s16">
+				<Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+				<Interior/>
+			</Style>
+			<Style ss:ID="sMK">
+				<Font ss:FontName="Arial" x:Family="Swiss" ss:Color="#000000" ss:Bold="1"/>
+				<Borders>
+					<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="3"/>
+				</Borders>
+			</Style>
+			<Style ss:ID="sMKT">
+				<Font ss:FontName="Arial" x:Family="Swiss" ss:Color="#000000" ss:Bold="1"/>
+				<Borders>
+					<Border ss:Position="Bottom" ss:LineStyle="Continuous" ss:Weight="3"/>
+				</Borders>
+			</Style>
+			<Style ss:ID="s75" ss:Parent="s16">
+				<Alignment ss:Horizontal="Right" ss:Vertical="Top"/>
+				<NumberFormat ss:Format="#,##0_);\(#,##0\)"/>
+			</Style>
+			<Style ss:ID="s71">
+				<Alignment ss:Vertical="Bottom"/>
+				<Borders>
+					<Border ss:Position="Top" ss:LineStyle="Continuous" ss:Weight="3"/>
+				</Borders>
+				<Font ss:FontName="Arial" x:Family="Swiss" ss:Bold="1"/>
+				<Interior ss:Color="#BFBFBF" ss:Pattern="Solid"/>
+				<NumberFormat/>
+				<Protection/>
+			</Style>
+			<Style ss:ID="s76" ss:Parent="s16">
+				<Alignment ss:Horizontal="Center" ss:Vertical="Bottom"/>
+				<Font x:Family="Swiss" ss:Bold="1"/>
+				<Interior/>
+			</Style>
+			<Style ss:ID="sWarning">
+				<Alignment ss:Vertical="Top"/>
+				<Borders/>
+				<Font ss:FontName="Arial" x:Family="Swiss" ss:Color="#000000"/>
+				<Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
+			</Style>
+			<Style ss:ID="sWarningB">
+				<Alignment ss:Vertical="Top" ss:WrapText="1"/>
+				<Borders/>
+				<Font ss:FontName="Arial" x:Family="Swiss" ss:Color="#000000"/>
+				<Interior ss:Color="#FFFF00" ss:Pattern="Solid"/>
+			</Style>
+			<Style ss:ID="sError">
+				<Alignment ss:Vertical="Top"/>
+				<Borders/>
+				<Font ss:FontName="Arial" x:Family="Swiss" ss:Color="#000000"/>
+				<Interior ss:Color="#FF5050" ss:Pattern="Solid"/>
+			</Style>
+			<Style ss:ID="sErrorB">
+				<Alignment ss:Vertical="Top" ss:WrapText="1"/>
+				<Borders/>
+				<Font ss:FontName="Arial" x:Family="Swiss" ss:Color="#000000"/>
+				<Interior ss:Color="#FF5050" ss:Pattern="Solid"/>
+			</Style>
+			<Style ss:ID="sNone">
+				<Alignment ss:Vertical="Top"/>
+				<Font ss:FontName="Arial" x:Family="Swiss" ss:Color="#000000"/>
+				<Interior/>
+			</Style>
+			<Style ss:ID="sNoneB">
+				<Alignment ss:Vertical="Top" ss:WrapText="1"/>
+				<Font ss:FontName="Arial" x:Family="Swiss" ss:Color="#000000"/>
+				<Interior/>
+			</Style>
+		</Styles>
+	</xsl:template>
+</xsl:stylesheet>

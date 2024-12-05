@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RenameMetadata xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <RenamedItems>
+    <RenameInfo>
+      <NewRelativePath>custom\DPT_ProcMonitor_xaml</NewRelativePath>
+      <OldRelativePath>custom\DPT_SysProcMon_xaml</OldRelativePath>
+      <OriginalRelativePath>custom\DPT_SysProcMon_xaml</OriginalRelativePath>
+    </RenameInfo>
+    <RenameInfo>
+      <NewRelativePath>stock\DPT_ProcMonitor_xaml</NewRelativePath>
+      <OldRelativePath>stock\DPT_SysProcMon_xaml</OldRelativePath>
+      <OriginalRelativePath>stock\DPT_SysProcMon_xaml</OriginalRelativePath>
+    </RenameInfo>
+    <RenameInfo>
+      <NewRelativePath>stock\DPT_ProcMonitor.xaml.wfmeta</NewRelativePath>
+      <OldRelativePath>stock\DPT_SysProcMon.xaml.wfmeta</OldRelativePath>
+      <OriginalRelativePath>stock\DPT_SysProcMon.xaml.wfmeta</OriginalRelativePath>
+    </RenameInfo>
+    <RenameInfo>
+      <NewRelativePath>stock\DPT_ProcMonitor.xaml</NewRelativePath>
+      <OldRelativePath>stock\DPT_SysProcMon.xaml</OldRelativePath>
+      <OriginalRelativePath>stock\DPT_SysProcMon.xaml</OriginalRelativePath>
+    </RenameInfo>
+  </RenamedItems>
+</RenameMetadata>

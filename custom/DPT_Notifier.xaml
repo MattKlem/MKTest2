@@ -1,0 +1,404 @@
+﻿<Activity mc:Ignorable="sads sap sap2010" x:Class="SolutionManagerEmptyTemplate" this:SolutionManagerEmptyTemplate.DPT_Bag="DatolitePowertoys"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:ea="clr-namespace:EDG.Activities;assembly=EDG.Activities"
+ xmlns:eaa="clr-namespace:EDG.Activities.AssignVariables;assembly=EDG.Activities.AssignVariables"
+ xmlns:eaa1="clr-namespace:EDG.Activities.ApplyStylesheet;assembly=EDG.Activities.ApplyStylesheet"
+ xmlns:eae="clr-namespace:EDG.Activities.EvaluateXpath;assembly=EDG.Activities.EvaluateXpath"
+ xmlns:eae1="clr-namespace:EDG.Activities.Email;assembly=EDG.Activities.Email"
+ xmlns:eafp="clr-namespace:Elite.Activities.Framework.PropertyBag;assembly=Elite.Activities.Framework"
+ xmlns:eag="clr-namespace:EDG.Activities.GetPropertyBagUrl;assembly=EDG.Activities.GetPropertyBagUrl"
+ xmlns:eal="clr-namespace:EDG.Activities.LoadDocument;assembly=EDG.Activities.LoadDocument"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:s="clr-namespace:System;assembly=mscorlib"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:sco1="clr-namespace:System.Collections.ObjectModel;assembly=System"
+ xmlns:st="clr-namespace:System.Text;assembly=mscorlib"
+ xmlns:this="clr-namespace:"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="ELITEWorkflowDirectory" Type="InOutArgument(x:String)" />
+    <x:Property Name="ELITEWorkflowCode" Type="InArgument(x:String)" />
+    <x:Property Name="RuntimeEngineURL" Type="InArgument(x:String)" />
+    <x:Property Name="SourceDocument" Type="InArgument(ea:Document)" />
+    <x:Property Name="OutputDocuments" Type="OutArgument(scg:List(ea:Document))" />
+    <x:Property Name="Errors" Type="OutArgument(scg:List(x:String))" />
+    <x:Property Name="DPT_Bag" Type="InArgument(x:String)" />
+    <x:Property Name="Request" Type="InArgument(ea:Document)" />
+  </x:Members>
+  <sap2010:WorkflowViewState.IdRef>SolutionManagerEmptyTemplate_1</sap2010:WorkflowViewState.IdRef>
+  <mva:VisualBasic.Settings>Assembly references and imported namespaces serialized as XML namespaces</mva:VisualBasic.Settings>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System.ServiceModel</x:String>
+      <x:String>System.ServiceModel.Activities</x:String>
+      <x:String>System.ServiceModel.Channels</x:String>
+      <x:String>System.ServiceModel.Description</x:String>
+      <x:String>System.ServiceModel.Security</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Activities.Debugger.Symbol</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>EDG.Activities</x:String>
+      <x:String>EDG.Activities.AssignVariables</x:String>
+      <x:String>Microsoft.VisualBasic.CompilerServices</x:String>
+      <x:String>EDG.Activities.LoadDocument</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>EDG.Activities.ApplyStylesheet</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Web</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activation</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>EDG.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+      <AssemblyReference>EDG.Activities.AssignVariables</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>EDG.Activities.LoadDocument</AssemblyReference>
+      <AssemblyReference>EDG.Activities.ApplyStylesheet</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Root Sequence (OnPrem)" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence DisplayName="Main Sequence" sap2010:WorkflowViewState.IdRef="Sequence_2">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="dptBag" />
+        <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="PropertyBag" />
+        <Variable x:TypeArguments="eaa1:ApplyStylesheetResult" Name="msgResult" />
+      </Sequence.Variables>
+      <Sequence DisplayName="Property Bag Sequence" sap2010:WorkflowViewState.IdRef="Sequence_4">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="eag:GetPropertyBagUrlResult" Name="pbagURL" />
+        </Sequence.Variables>
+        <eag:GetPropertyBagUrl sap2010:WorkflowViewState.IdRef="GetPropertyBagUrl_1" Result="[pBagURL]" RootFolderPath="[ELITEWorkflowDirectory]" />
+        <eafp:GetBagFromStore Attributes="{x:Null}" AutoDeObfuscate="{x:Null}" CorrelationId="{x:Null}" DisplayName="GetConfigurations" sap2010:WorkflowViewState.IdRef="GetBagFromStore_1" Name="[DPT_Bag]" Result="[dptBag]" ServiceUri="[pBagURL.url]" />
+        <eafp:GetBagFromStore Attributes="{x:Null}" AutoDeObfuscate="{x:Null}" CorrelationId="{x:Null}" DisplayName="GetConfigurations" sap2010:WorkflowViewState.IdRef="GetBagFromStore_2" Name="TE_PM_3E_Settings" Result="[PropertyBag]" ServiceUri="[pBagURL.url]" />
+      </Sequence>
+      <Sequence DisplayName="getDoc" sap2010:WorkflowViewState.IdRef="Sequence_10">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="eal:LoadDocumentResult" Name="theSrc" />
+        </Sequence.Variables>
+        <eal:LoadDocument FilePath="[System.IO.Path.Combine(ELITEWorkflowDirectory, ELITEWorkflowCode &amp; &quot;_XAML&quot;, &quot;_Stub.xml&quot;)]" sap2010:WorkflowViewState.IdRef="LoadDocument_2" Result="[theSrc]">
+          <eal:LoadDocument.DefaultEncoding>
+            <InArgument x:TypeArguments="st:Encoding" />
+          </eal:LoadDocument.DefaultEncoding>
+        </eal:LoadDocument>
+        <eaa1:ApplyStylesheet TemplateName="{x:Null}" Document="[theSrc.Document]" sap2010:WorkflowViewState.IdRef="ApplyStylesheet_1" Result="[msgResult]" StylesheetPath="[System.IO.Path.Combine(ELITEWorkflowDirectory, ELITEWorkflowCode &amp; &quot;_XAML&quot;, &quot;BuildXML.xsl&quot;)]">
+          <eaa1:ApplyStylesheet.Parameters>
+            <sco1:ObservableCollection x:TypeArguments="eaa1:StyleSheetParameter" />
+          </eaa1:ApplyStylesheet.Parameters>
+        </eaa1:ApplyStylesheet>
+      </Sequence>
+      <Sequence DisplayName="Notification Sequence" sap2010:WorkflowViewState.IdRef="Sequence_7">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="eaa:AssignVariablesResult" Name="notifyVars" />
+        </Sequence.Variables>
+        <eaa:AssignVariables DisplayName="NotifyVars" Document="[msgResult.Document]" sap2010:WorkflowViewState.IdRef="AssignVariables_1" Result="[notifyVars]">
+          <eaa:AssignVariables.Variables>
+            <scg:List x:TypeArguments="eaa:Variable" Capacity="16">
+              <eaa:XpathVariable DefaultXmlNamespace="{x:Null}" DefaultValue="false" Expression="/DLSNotify/Request/isEmail" Name="isEmail" ReturnType="Document">
+                <eaa:XpathVariable.XmlNamespaces>
+                  <sco1:ObservableCollection x:TypeArguments="eae:XmlNamespace" />
+                </eaa:XpathVariable.XmlNamespaces>
+              </eaa:XpathVariable>
+              <eaa:XpathVariable DefaultXmlNamespace="{x:Null}" DefaultValue="false" Expression="/DLSNotify/Request/isTeams" Name="isTeams" ReturnType="Document">
+                <eaa:XpathVariable.XmlNamespaces>
+                  <sco1:ObservableCollection x:TypeArguments="eae:XmlNamespace" />
+                </eaa:XpathVariable.XmlNamespaces>
+              </eaa:XpathVariable>
+              <eaa:XpathVariable DefaultXmlNamespace="{x:Null}" DefaultValue="1" Expression="/DLSNotify/Request/TeamsData/Type" Name="teamsMsgType" ReturnType="Document">
+                <eaa:XpathVariable.XmlNamespaces>
+                  <sco1:ObservableCollection x:TypeArguments="eae:XmlNamespace" />
+                </eaa:XpathVariable.XmlNamespaces>
+              </eaa:XpathVariable>
+              <eaa:XpathVariable DefaultValue="{x:Null}" DefaultXmlNamespace="{x:Null}" Expression="/DLSNotify/Request/TeamsData/Target" Name="teamsTarget" ReturnType="Document">
+                <eaa:XpathVariable.XmlNamespaces>
+                  <sco1:ObservableCollection x:TypeArguments="eae:XmlNamespace" />
+                </eaa:XpathVariable.XmlNamespaces>
+              </eaa:XpathVariable>
+              <eaa:XpathVariable DefaultValue="{x:Null}" DefaultXmlNamespace="{x:Null}" Expression="/DLSNotify/Request/TeamsData/Message" Name="teamsMsg" ReturnType="Document">
+                <eaa:XpathVariable.XmlNamespaces>
+                  <sco1:ObservableCollection x:TypeArguments="eae:XmlNamespace" />
+                </eaa:XpathVariable.XmlNamespaces>
+              </eaa:XpathVariable>
+              <eaa:XpathVariable DefaultXmlNamespace="{x:Null}" DefaultValue="false" Expression="/DLSNotify/Request/TeamsData/CardBlock" Name="teamsCardBlock" ReturnType="Document">
+                <eaa:XpathVariable.XmlNamespaces>
+                  <sco1:ObservableCollection x:TypeArguments="eae:XmlNamespace" />
+                </eaa:XpathVariable.XmlNamespaces>
+              </eaa:XpathVariable>
+              <eaa:XpathVariable DefaultValue="{x:Null}" DefaultXmlNamespace="{x:Null}" Expression="/DLSNotify/Request/EmailData/To" Name="emailTo" ReturnType="Document">
+                <eaa:XpathVariable.XmlNamespaces>
+                  <sco1:ObservableCollection x:TypeArguments="eae:XmlNamespace" />
+                </eaa:XpathVariable.XmlNamespaces>
+              </eaa:XpathVariable>
+              <eaa:XpathVariable DefaultValue="{x:Null}" DefaultXmlNamespace="{x:Null}" Expression="/DLSNotify/Request/EmailData/From" Name="emailFrom" ReturnType="Document">
+                <eaa:XpathVariable.XmlNamespaces>
+                  <sco1:ObservableCollection x:TypeArguments="eae:XmlNamespace" />
+                </eaa:XpathVariable.XmlNamespaces>
+              </eaa:XpathVariable>
+              <eaa:XpathVariable DefaultValue="{x:Null}" DefaultXmlNamespace="{x:Null}" Expression="/DLSNotify/Request/EmailData/Body" Name="emailBody" ReturnType="Document">
+                <eaa:XpathVariable.XmlNamespaces>
+                  <sco1:ObservableCollection x:TypeArguments="eae:XmlNamespace" />
+                </eaa:XpathVariable.XmlNamespaces>
+              </eaa:XpathVariable>
+              <eaa:XpathVariable DefaultXmlNamespace="{x:Null}" DefaultValue="false" Expression="/DLSNotify/Request/EmailData/Attachments" Name="emailAttachment" ReturnType="Document">
+                <eaa:XpathVariable.XmlNamespaces>
+                  <sco1:ObservableCollection x:TypeArguments="eae:XmlNamespace" />
+                </eaa:XpathVariable.XmlNamespaces>
+              </eaa:XpathVariable>
+              <eaa:XpathVariable DefaultValue="{x:Null}" DefaultXmlNamespace="{x:Null}" Expression="/DLSNotify/Request/EmailData/Subject" Name="emailSubject" ReturnType="Document">
+                <eaa:XpathVariable.XmlNamespaces>
+                  <sco1:ObservableCollection x:TypeArguments="eae:XmlNamespace" />
+                </eaa:XpathVariable.XmlNamespaces>
+              </eaa:XpathVariable>
+              <eaa:XpathVariable DefaultValue="{x:Null}" DefaultXmlNamespace="{x:Null}" Expression="/DLSNotify/Request/EmailData/CC" Name="emailCC" ReturnType="Document">
+                <eaa:XpathVariable.XmlNamespaces>
+                  <sco1:ObservableCollection x:TypeArguments="eae:XmlNamespace" />
+                </eaa:XpathVariable.XmlNamespaces>
+              </eaa:XpathVariable>
+              <eaa:XpathVariable DefaultValue="{x:Null}" DefaultXmlNamespace="{x:Null}" Expression="/DLSNotify/Request/EmailData/BCC" Name="emailBCC" ReturnType="Document">
+                <eaa:XpathVariable.XmlNamespaces>
+                  <sco1:ObservableCollection x:TypeArguments="eae:XmlNamespace" />
+                </eaa:XpathVariable.XmlNamespaces>
+              </eaa:XpathVariable>
+            </scg:List>
+          </eaa:AssignVariables.Variables>
+        </eaa:AssignVariables>
+        <Sequence DisplayName="Email Notifications" sap2010:WorkflowViewState.IdRef="Sequence_5">
+          <If Condition="[notifyVars(&quot;isEmail&quot;).ToString = &quot;true&quot;]" sap2010:WorkflowViewState.IdRef="If_1">
+            <If.Then>
+              <Sequence DisplayName="Send Email Notification" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                <If Condition="[notifyVars(&quot;emailAttachment&quot;).ToString &lt;&gt; &quot;false&quot;]" DisplayName="Has Attachments?" sap2010:WorkflowViewState.IdRef="If_2">
+                  <If.Then>
+                    <Sequence DisplayName="Load attachment and send" sap2010:WorkflowViewState.IdRef="Sequence_9">
+                      <Sequence.Variables>
+                        <Variable x:TypeArguments="eal:LoadDocumentResult" Name="theAttachment" />
+                      </Sequence.Variables>
+                      <eal:LoadDocument FilePath="[notifyVars(&quot;emailAttachment&quot;).ToString]" sap2010:WorkflowViewState.IdRef="LoadDocument_1" Result="[theAttachment]">
+                        <eal:LoadDocument.DefaultEncoding>
+                          <InArgument x:TypeArguments="st:Encoding" />
+                        </eal:LoadDocument.DefaultEncoding>
+                      </eal:LoadDocument>
+                      <eae1:Email Body="[notifyVars(&quot;emailBody&quot;).ToString]" DisplayName="Email w/ Attachments" EnableSSL="False" ExchangeAuthenticationMode="Integrated" From="[notifyVars(&quot;emailFrom&quot;).ToString]" sap2010:WorkflowViewState.IdRef="Email_1" IsHTML="True" MSExchangeVersion="Exchange2010_SP2" Port="[Int32.Parse(PropertyBag(&quot;SMTP_Port&quot;))]" Priority="Normal" Protocol="Smtp" SMTPAuthenticationMode="Anonymous" Sender="[notifyVars(&quot;emailFrom&quot;).ToString]" ServerAddress="[PropertyBag(&quot;SMTP_Host&quot;)]" Subject="[notifyVars(&quot;emailSubject&quot;).ToString]">
+                        <eae1:Email.BCC>
+                          <InArgument x:TypeArguments="x:String">[notifyVars("emailBCC").ToString]</InArgument>
+                        </eae1:Email.BCC>
+                        <eae1:Email.CC>
+                          <InArgument x:TypeArguments="x:String">[notifyVars("emailCC").ToString]</InArgument>
+                        </eae1:Email.CC>
+                        <eae1:Email.EmailAttachments>
+                          <eae1:Attachment AttachmentContent="[theAttachment.Document]" Filename="[System.IO.Path.GetFileName(notifyVars(&quot;emailAttachment&quot;).ToString)]" />
+                        </eae1:Email.EmailAttachments>
+                        <eae1:Email.Password>
+                          <InArgument x:TypeArguments="x:String" />
+                        </eae1:Email.Password>
+                        <eae1:Email.To>
+                          <InArgument x:TypeArguments="x:String">[notifyVars("emailTo").ToString]</InArgument>
+                        </eae1:Email.To>
+                        <eae1:Email.Username>
+                          <InArgument x:TypeArguments="x:String" />
+                        </eae1:Email.Username>
+                      </eae1:Email>
+                    </Sequence>
+                  </If.Then>
+                  <If.Else>
+                    <eae1:Email Body="[notifyVars(&quot;emailBody&quot;).ToString]" DisplayName="Email w/o Attachments" EnableSSL="False" ExchangeAuthenticationMode="Integrated" From="[notifyVars(&quot;emailFrom&quot;).ToString]" sap2010:WorkflowViewState.IdRef="Email_2" IsHTML="True" MSExchangeVersion="Exchange2010_SP2" Port="[Int32.Parse(PropertyBag(&quot;SMTP_Port&quot;))]" Priority="Normal" Protocol="Smtp" SMTPAuthenticationMode="Anonymous" Sender="[notifyVars(&quot;emailFrom&quot;).ToString]" ServerAddress="[PropertyBag(&quot;SMTP_Host&quot;)]" Subject="[notifyVars(&quot;emailSubject&quot;).ToString]">
+                      <eae1:Email.BCC>
+                        <InArgument x:TypeArguments="x:String">[notifyVars("emailBCC").ToString]</InArgument>
+                      </eae1:Email.BCC>
+                      <eae1:Email.CC>
+                        <InArgument x:TypeArguments="x:String">[notifyVars("emailCC").ToString]</InArgument>
+                      </eae1:Email.CC>
+                      <eae1:Email.EmailAttachments>
+                        <sco1:ObservableCollection x:TypeArguments="eae1:Attachment" />
+                      </eae1:Email.EmailAttachments>
+                      <eae1:Email.Password>
+                        <InArgument x:TypeArguments="x:String" />
+                      </eae1:Email.Password>
+                      <eae1:Email.To>
+                        <InArgument x:TypeArguments="x:String">[notifyVars("emailTo").ToString]</InArgument>
+                      </eae1:Email.To>
+                      <eae1:Email.Username>
+                        <InArgument x:TypeArguments="x:String" />
+                      </eae1:Email.Username>
+                    </eae1:Email>
+                  </If.Else>
+                </If>
+              </Sequence>
+            </If.Then>
+          </If>
+        </Sequence>
+        <Sequence DisplayName="Teams Notifications" sap2010:WorkflowViewState.IdRef="Sequence_6" />
+      </Sequence>
+    </Sequence>
+    <sads:DebugSymbol.Symbol>d3BDOlxVc2Vyc1xNYXR0S2xlbVxBcHBEYXRhXFJvYW1pbmdcQzREMTMxQTktNkJFMS00MjcxLTk4ODktNjMyM0QxQ0RFODE1XDU1OTg2NWUwLTI5OGYtNDk0Zi05OTUxLTIzOWQ5YjJjNTQzMy5YQU1MTgF8AY4BAQJbA4gCDgIBAVwFhgIQAgECYgdpEgIBcGoHeBICAWF5B4UCEgIBA2YJZpUBAgF+Zwln/QECAXdoCWiKAgIBcW4JchwCAWpzCXcgAgFifQnDAR8CAT3EAQmDAhQCAQWEAgmEAmQCAQRmeGaSAQMBgQFmXWZoAgF/Z9UBZ98BAgF8Z+sBZ/oBAgF6Z8IBZ80BAgF4aN0BaOwBAgF1aPgBaIcCAgFzaMIBaNUBAgFybtEBbtsBAgFubiRumAECAWtzrAFzowICAWdzQHNTAgFlc48Bc5wBAgFjmQFOmQFVAgFffUB9VgIBXKMBZKMBhwECAVqKAU6KAVECAVmoAWSoAYcBAgFYhQFOhQFVAgFWgAFOgAFVAgFUlAFklAGKAQIBUo8BZI8BiQECAVGeAWSeAYUBAgFPfZIBfaABAgFNmQFhmQGJAQIBS60BTq0BVQIBSoABYYABfQIBR60BYa0BiwECAUayAWSyAYoBAgFEtwFktwGFAQIBQooBXYoBgAECAUGFAWGFAX0CAT+8AWS8AYYBAgE+xQELggIQAgEGxQEZxQFYAgEHxwEPgAIaAgEJyAER/wEWAgEKyAEfyAFuAgELygEV5wEgAgEg6gEV/QEiAgENzgEX0gEqAgE40wEX5gEkAgEh7AFA7AFhAgEe7wFA7wFgAgEc6gHJA+oB9wMCARrqASbqAVQCARjqAbUE6gHmBAIBFuoBuAHqAeYBAgEU6gGGBOoBrAQCARLqAckC6gH8AgIBEPgBQPgBYAIBDs4BnwHOAbABAgE7zgEyzgFmAgE50wHKA9MB+AMCATbTASjTAVYCATTTAbYE0wHnBAIBMtMBuQHTAecBAgEw0wGHBNMBrQQCAS7bAT7bAVgCASzYAULYAWICASrhAULhAWICASjTAcoC0wH9AgIBJtsBYtsBsgECASTVAULVAWMCASI=</sads:DebugSymbol.Symbol>
+  </Sequence>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="GetPropertyBagUrl_1" sap:VirtualizedContainerService.HintSize="277,150">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="GetBagFromStore_1" sap:VirtualizedContainerService.HintSize="277,274">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="GetBagFromStore_2" sap:VirtualizedContainerService.HintSize="277,274">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="1122,902">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="LoadDocument_2" sap:VirtualizedContainerService.HintSize="500,150">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ApplyStylesheet_1" sap:VirtualizedContainerService.HintSize="500,157">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_10" sap:VirtualizedContainerService.HintSize="1122,471">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="AssignVariables_1" sap:VirtualizedContainerService.HintSize="1100,508">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="LoadDocument_1" sap:VirtualizedContainerService.HintSize="499,150">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Email_1" sap:VirtualizedContainerService.HintSize="499,395">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_9" sap:VirtualizedContainerService.HintSize="521,709">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Email_2" sap:VirtualizedContainerService.HintSize="385,398">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_2" sap:VirtualizedContainerService.HintSize="931,857" />
+      <sap2010:ViewStateData Id="Sequence_8" sap:VirtualizedContainerService.HintSize="953,981">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="If_1" sap:VirtualizedContainerService.HintSize="1078,1129" />
+      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="1100,1253">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_6" sap:VirtualizedContainerService.HintSize="1100,99">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_7" sap:VirtualizedContainerService.HintSize="1122,2064">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="1144,3641">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="1166,3765">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="SolutionManagerEmptyTemplate_1" sap:VirtualizedContainerService.HintSize="1206,3845" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</Activity>

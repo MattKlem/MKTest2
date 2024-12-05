@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="windows-1252"?>
+
+<xsl:stylesheet 
+xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+
+xmlns:x="urn:schemas-microsoft-com:office:excel" 
+xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet" 
+xmlns:html="http://www.w3.org/TR/REC-html40" 
+version="1.0">
+
+
+	<xsl:template match="/" name="DPT_EventFaultReport">
+
+		<!--The block of code found from here to the ignoreSubtree line must now be included in all WordML Document Masters.
+		This code was previously used in Preview Masters to simulate the wrappers automatically applied by the DG 2.x codebase.
+		In 3.0, the developer must include this wrapping, and the calling of the DocProperties manually within their DM.-->
+
+		<?mso-application progid="Excel.Sheet"?>
+
+		<Workbook>
+
+			<xsl:call-template name="DLS_EventFaultDP"/>
+			<xsl:call-template name="ReportBody"/>
+			
+
+		</Workbook>
+
+	</xsl:template>
+</xsl:stylesheet>

@@ -1,0 +1,230 @@
+﻿<Activity mc:Ignorable="sads sap sap2010" x:Class="SolutionManagerEmptyTemplate" this:SolutionManagerEmptyTemplate.CleanDBConnBag="DatolitePowertoys"
+ xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities"
+ xmlns:ea="clr-namespace:EDG.Activities;assembly=EDG.Activities"
+ xmlns:eae="clr-namespace:EDG.Activities.ExecuteSql;assembly=EDG.Activities.ExecuteSql"
+ xmlns:eae1="clr-namespace:EDG.Activities.EvaluateXpath;assembly=EDG.Activities.EvaluateXpath"
+ xmlns:eafp="clr-namespace:Elite.Activities.Framework.PropertyBag;assembly=Elite.Activities.Framework"
+ xmlns:eag="clr-namespace:EDG.Activities.GetPropertyBagUrl;assembly=EDG.Activities.GetPropertyBagUrl"
+ xmlns:eal="clr-namespace:EDG.Activities.Log;assembly=EDG.Activities.Log"
+ xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+ xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities"
+ xmlns:s="clr-namespace:System;assembly=mscorlib"
+ xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger"
+ xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation"
+ xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation"
+ xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib"
+ xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib"
+ xmlns:sco1="clr-namespace:System.Collections.ObjectModel;assembly=System"
+ xmlns:this="clr-namespace:"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="ELITEWorkflowDirectory" Type="InOutArgument(x:String)" />
+    <x:Property Name="ELITEWorkflowCode" Type="InArgument(x:String)" />
+    <x:Property Name="RuntimeEngineURL" Type="InArgument(x:String)" />
+    <x:Property Name="SourceDocument" Type="InArgument(ea:Document)" />
+    <x:Property Name="OutputDocuments" Type="OutArgument(scg:List(ea:Document))" />
+    <x:Property Name="Errors" Type="OutArgument(scg:List(x:String))" />
+    <x:Property Name="CleanDBConnBag" Type="InArgument(x:String)" />
+  </x:Members>
+  <sap2010:WorkflowViewState.IdRef>SolutionManagerEmptyTemplate_1</sap2010:WorkflowViewState.IdRef>
+  <mva:VisualBasic.Settings>Assembly references and imported namespaces serialized as XML namespaces</mva:VisualBasic.Settings>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System.ServiceModel</x:String>
+      <x:String>System.ServiceModel.Activities</x:String>
+      <x:String>System.ServiceModel.Channels</x:String>
+      <x:String>System.ServiceModel.Description</x:String>
+      <x:String>System.ServiceModel.Security</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Activities.Debugger.Symbol</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Text</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>EDG.Activities</x:String>
+      <x:String>EDG.Activities.GetPropertyBagUrl</x:String>
+      <x:String>EDG.Activities.ExecuteSql</x:String>
+      <x:String>EDG.Activities.EvaluateXpath</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Web</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activation</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>EDG.Activities</AssemblyReference>
+      <AssemblyReference>EDG.Activities.GetPropertyBagUrl</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+      <AssemblyReference>EDG.Activities.ExecuteSql</AssemblyReference>
+      <AssemblyReference>EDG.Activities.EvaluateXpath</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Root Sequence (OnPrem)" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence DisplayName="Main Sequence" sap2010:WorkflowViewState.IdRef="Sequence_2">
+      <Sequence.Variables>
+        <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="PropertyBag" />
+        <Variable x:TypeArguments="eae:ExecuteSqlResult" Name="procList" />
+        <Variable x:TypeArguments="x:Int32" Name="bCount" />
+        <Variable x:TypeArguments="x:Int32" Name="aCount" />
+        <Variable x:TypeArguments="eae1:EvaluateXpathResult" Name="xpEval" />
+      </Sequence.Variables>
+      <Sequence DisplayName="Property Bag Sequence" sap2010:WorkflowViewState.IdRef="Sequence_4">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="eag:GetPropertyBagUrlResult" Name="pbagURL" />
+        </Sequence.Variables>
+        <eag:GetPropertyBagUrl sap2010:WorkflowViewState.IdRef="GetPropertyBagUrl_1" Result="[pBagURL]" RootFolderPath="[ELITEWorkflowDirectory]" />
+        <eafp:GetBagFromStore Attributes="{x:Null}" AutoDeObfuscate="{x:Null}" CorrelationId="{x:Null}" DisplayName="GetConfigurations" sap2010:WorkflowViewState.IdRef="GetBagFromStore_1" Name="[CleanDBConnBag]" Result="[PropertyBag]" ServiceUri="[pBagURL.url]" />
+      </Sequence>
+      <Sequence DisplayName="Clean DB Connections" sap2010:WorkflowViewState.IdRef="Sequence_5">
+        <eae:ExecuteSql ConnectionString="[PropertyBag(&quot;DBConnString&quot;)]" DisplayName="GetBeforeList" sap2010:WorkflowViewState.IdRef="ExecuteSql_4" Query="SELECT program_name, cmd, hostname,status,login_time FROM sys.sysprocesses WHERE dbid IN (SELECT database_id FROM sys.databases WHERE name = 'ProcessManagerPersistence') ORDER BY login_time DESC" Result="[procList]" />
+        <eae1:EvaluateXpath DefaultNamespace="{x:Null}" DefaultValue="{x:Null}" XmlNamespacesMerge="{x:Null}" Document="[procList.Document]" sap2010:WorkflowViewState.IdRef="EvaluateXpath_1" Result="[xpEval]" XPath="count(/DocumentElement/Results/program_name)">
+          <eae1:EvaluateXpath.XmlNamespaces>
+            <sco1:ObservableCollection x:TypeArguments="eae1:XmlNamespace" />
+          </eae1:EvaluateXpath.XmlNamespaces>
+        </eae1:EvaluateXpath>
+        <Assign sap2010:WorkflowViewState.IdRef="Assign_1">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:Int32">[bCount]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:Int32">[Int32.Parse(xpEval.Value)]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <eae:ExecuteSql ConnectionString="[PropertyBag(&quot;DBConnString&quot;)]" DisplayName="CleanConnections" sap2010:WorkflowViewState.IdRef="ExecuteSql_5" Query="[&quot;DECLARE @kill varchar(8000) = ''; SELECT @kill = @kill + 'KILL ' + CONVERT(varchar(5), b.spid) + ';' FROM sys.dm_exec_sessions a INNER JOIN sys.sysprocesses b ON a.session_id = b.spid INNER JOIN sys.databases c ON b.dbid = c.database_id WHERE a.status = 'sleeping' AND c.name = 'ProcessManagerPersistence' AND DATEDIFF(second, last_request_end_time, GETDATE()) &gt;&quot; &amp; Int32.Parse(PropertyBag(&quot;DBConnTimeout&quot;)) &amp; &quot; EXEC(@kill);&quot;]" />
+        <eae:ExecuteSql ConnectionString="[PropertyBag(&quot;DBConnString&quot;)]" DisplayName="GetAfterList" sap2010:WorkflowViewState.IdRef="ExecuteSql_6" Query="SELECT program_name, cmd, hostname,status,login_time FROM sys.sysprocesses WHERE dbid IN (SELECT database_id FROM sys.databases WHERE name = 'ProcessManagerPersistence') ORDER BY login_time DESC" Result="[procList]" />
+        <eae1:EvaluateXpath DefaultNamespace="{x:Null}" DefaultValue="{x:Null}" XmlNamespacesMerge="{x:Null}" Document="[procList.Document]" sap2010:WorkflowViewState.IdRef="EvaluateXpath_2" Result="[xpEval]" XPath="count(/DocumentElement/Results/program_name)">
+          <eae1:EvaluateXpath.XmlNamespaces>
+            <sco1:ObservableCollection x:TypeArguments="eae1:XmlNamespace" />
+          </eae1:EvaluateXpath.XmlNamespaces>
+        </eae1:EvaluateXpath>
+        <Assign sap2010:WorkflowViewState.IdRef="Assign_2">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:Int32">[aCount]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:Int32">[Int32.Parse(xpEval.Value)]</InArgument>
+          </Assign.Value>
+        </Assign>
+        <eal:Log LogType="Information" Message="[&quot;Old Count: &quot; &amp; bCount &amp; &quot;; New Count: &quot; &amp; aCount]" sap2010:WorkflowViewState.IdRef="Log_1" />
+      </Sequence>
+    </Sequence>
+    <sads:DebugSymbol.Symbol>d3BDOlxVc2Vyc1xNYXR0S2xlbVxBcHBEYXRhXFJvYW1pbmdcQzREMTMxQTktNkJFMS00MjcxLTk4ODktNjMyM0QxQ0RFODE1XGRiODcwNWJmLWJlOWYtNDA2MS1iZWMyLWM3YzExZGI0M2U2MS5YQU1MJwGDAQGVAQECVAOGAQ4CAQFVBYQBEAIBAl0HYxICAS9kB4MBEgIBA2EJYZUBAgE3YgliiQICATBlCWWAAwIBKWYJah4CASNrCXISAgEecwlzggUCARl0CXT/AgIBE3UJeR4CAQ16CYEBEgIBCIIBCYIBsAECAQRheGGSAQIBOmFdYWgCAThi3AFi6wECATVi9wFihgICATNiwgFi1AECATFlKmVTAgEtZfECZf0CAgErZaUBZekCAgEqZtgBZoYCAgEoZnhmjQECASZmxwFm0QECASRwM3BOAgEhbTRtPAIBH3Mqc1MCARxzqAFz/wQCARp0KnRTAgEXdPACdPwCAgEVdKQBdOgCAgEUddgBdYYCAgESdXh1jQECARB1xwF10QECAQ5/M39OAgELfDR8PAIBCYIBMIIBhQECAQU=</sads:DebugSymbol.Symbol>
+  </Sequence>
+  <sap2010:WorkflowViewState.ViewStateManager>
+    <sap2010:ViewStateManager>
+      <sap2010:ViewStateData Id="GetPropertyBagUrl_1" sap:VirtualizedContainerService.HintSize="277,150">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="GetBagFromStore_1" sap:VirtualizedContainerService.HintSize="277,274">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_4" sap:VirtualizedContainerService.HintSize="522,51">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ExecuteSql_4" sap:VirtualizedContainerService.HintSize="500,155">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="EvaluateXpath_1" sap:VirtualizedContainerService.HintSize="500,201">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_1" sap:VirtualizedContainerService.HintSize="500,60" />
+      <sap2010:ViewStateData Id="ExecuteSql_5" sap:VirtualizedContainerService.HintSize="500,155">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="ExecuteSql_6" sap:VirtualizedContainerService.HintSize="500,155">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="EvaluateXpath_2" sap:VirtualizedContainerService.HintSize="500,201">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Assign_2" sap:VirtualizedContainerService.HintSize="500,60" />
+      <sap2010:ViewStateData Id="Log_1" sap:VirtualizedContainerService.HintSize="500,156">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_5" sap:VirtualizedContainerService.HintSize="522,1547">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_2" sap:VirtualizedContainerService.HintSize="544,1762">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="Sequence_3" sap:VirtualizedContainerService.HintSize="566,1886">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </sap2010:ViewStateData>
+      <sap2010:ViewStateData Id="SolutionManagerEmptyTemplate_1" sap:VirtualizedContainerService.HintSize="606,1966" />
+    </sap2010:ViewStateManager>
+  </sap2010:WorkflowViewState.ViewStateManager>
+</Activity>
